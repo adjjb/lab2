@@ -120,6 +120,16 @@ void fbputs(const char *s, int row, int col)
   while ((c = *s++) != 0) fbputchar(c, row, col++);
 }
 
+void findWord(const struct KeyState *dataset,unsigned char a, unsigned char b, unsigned char c){
+for (int i = 0; i < sizeof(dataset) / sizeof(dataset[0]); ++i) {
+        if (dataset[i].modifiers == a &&
+            dataset[i].keycode[0] == b &&
+            dataset[i].keycode[1] == c) {
+            pressedKey = &dataset[i];
+return pressKey;
+
+}
+
 /* 8 X 16 console font from /lib/kbd/consolefonts/lat0-16.psfu.gz
 
 od --address-radix=n --width=16 -v -t x1 -j 4 -N 2048 lat0-16.psfu
