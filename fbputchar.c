@@ -121,7 +121,7 @@ void fbputs(const char *s, int row, int col)
 }
 
 char findWord(const struct KeyState dataset[], unsigned int a, unsigned int b, unsigned int c) {
-    const unsigned char *pressedKey = '|';  // Initialize to a default value
+    const char *pressedKey = '|';  // Initialize to a default value
 
     for (int i = 0; i < sizeof(dataset) / sizeof(dataset[0]); ++i) {
         if (dataset[i].modifiers == a &&
