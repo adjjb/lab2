@@ -54,7 +54,7 @@ int main()
 
   struct usb_keyboard_packet packet;
   int transferred;
-  char keystate[12];
+  char keystate[12],word;
   unsigned int a, b, c;
 
   if ((err = fbopen()) != 0) {
@@ -111,7 +111,7 @@ int main()
       sprintf(keystate, "%02x %02x %02x", packet.modifiers, packet.keycode[0],
 	      packet.keycode[1]);
       sscanf(keystate, "%02x %02x %02x", &a, &b, &c);
-      const char word = findWord(alphabet,a, b, c);
+      sprintf(word, "%x", findWord(alphabet,a, b, c);
       printf("%s\n", word);
       fbputs(word, 22, 0);
       if (packet.keycode[0] == 0x29) { /* ESC pressed? */
