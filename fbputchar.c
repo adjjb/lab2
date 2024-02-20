@@ -125,7 +125,7 @@ for (int i = 0; i < sizeof(dataset) / sizeof(dataset[0]); ++i) {
         if (dataset[i].modifiers == a &&
             dataset[i].keycode[0] == b &&
             dataset[i].keycode[1] == c) {
-            pressedKey = &dataset[i];
+            pressedKey = dataset[i].character;
 return pressKey;
 
 }
