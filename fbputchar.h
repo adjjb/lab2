@@ -8,8 +8,8 @@
 #define FBOPEN_BPP -5          /* Unexpected bits-per-pixel */
 
 struct KeyState {
-    unsigned char modifiers;
-    unsigned char keycode[2];
+    unsigned int modifiers;
+    unsigned int keycode[2];
     char character;
     // Add other fields if needed
 };
