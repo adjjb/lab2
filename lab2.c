@@ -111,7 +111,7 @@ int main()
 	      packet.keycode[1]);
       char word = findWord(alphabet,packet.modifiers, packet.keycode[0], packet.keycode[1]);
       printf("%s\n", word);
-      fbputs(word, 22, 0);
+      fbputchar(word, 22, 0);
       if (packet.keycode[0] == 0x29) { /* ESC pressed? */
 	break;
       }
