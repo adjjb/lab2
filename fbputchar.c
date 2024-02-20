@@ -53,6 +53,15 @@ int fbopen()
   return 0;
 }
 
+/* Clean the screen with space*/
+void fbclean(int row, int col)
+{
+	for (col = 0 ; col < 64 ; col++) {
+	  for(row = 0; row < 24 ; row++){
+    		fbputchar(' ', row, col);
+	  }
+  }
+}
 /*
  * Draw the given character at the given row/column.
  * fbopen() must be called first.
