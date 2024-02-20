@@ -54,7 +54,7 @@ int main()
 
   struct usb_keyboard_packet packet;
   int transferred;
-  char keystate[12];
+  char keystate[12], word;
 
   if ((err = fbopen()) != 0) {
     fprintf(stderr, "Error: Could not open framebuffer: %d\n", err);
@@ -109,7 +109,7 @@ int main()
     if (transferred == sizeof(packet)) {
       sprintf(keystate, "%02x %02x %02x", packet.modifiers, packet.keycode[0],
 	      packet.keycode[1]);
-      char word = findWord(alphabet,packet.modifiers, packet.keycode[0], packet.keycode[1]);
+      word = findWord(alphabet,packet.modifiers, packet.keycode[0], packet.keycode[1]);
       printf("%s\n", word);
       fbputchar(word, 22, 0);
       if (packet.keycode[0] == 0x29) { /* ESC pressed? */
