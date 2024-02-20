@@ -55,11 +55,8 @@ int main()
   }
 
   /* Draw space to whole screen*/
-  for (col = 0 ; col < 64 ; col++) {
-	  for(row = 0; row < 24 ; row++){
-    		fbputchar(' ', row, col);
-	  }
-  }
+  fbclean(24,64);
+	
   /* Draw rows of asterisks across the top and bottom of the screen */
   for (col = 0 ; col < 64 ; col++) {
     fbputchar('_', 20, col);
