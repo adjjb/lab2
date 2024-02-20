@@ -13,7 +13,7 @@ extern void fbputs(const char * , int, int);
 extern void fbclean(int,int);
 extern char findWord(const struct KeyState, unsigned char, unsigned char, unsigned char);
 
-struct KeyState {
+typedef struct KeyState {
     unsigned char modifiers;
     unsigned char keycode[2];
     char character;
