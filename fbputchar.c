@@ -120,14 +120,19 @@ void fbputs(const char *s, int row, int col)
   while ((c = *s++) != 0) fbputchar(c, row, col++);
 }
 
-void findWord(const struct KeyState dataset[],unsigned char a, unsigned char b, unsigned char c){
-for (int i = 0; i < sizeof(dataset) / sizeof(dataset[0]); ++i) {
+char findWord(const struct KeyState dataset[], unsigned char a, unsigned char b, unsigned char c) {
+    char pressedKey = ' ';  // Initialize to a default value
+
+    for (int i = 0; i < sizeof(dataset) / sizeof(dataset[0]); ++i) {
         if (dataset[i].modifiers == a &&
             dataset[i].keycode[0] == b &&
             dataset[i].keycode[1] == c) {
             pressedKey = dataset[i].character;
-return pressKey;
+            return pressedKey;
+        }
+    }
 
+    return pressedKey;  // Return a default value if the key is not found
 }
 
 /* 8 X 16 console font from /lib/kbd/consolefonts/lat0-16.psfu.gz
