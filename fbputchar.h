@@ -19,11 +19,4 @@ struct KeyState {
     char character;
     // Add other fields if needed
 };
-
-struct KeyState dataset[] = {
-    {0x00, {0x04, 0x00}, 'A'},  // Example entry 1
-    /*{0x02, {0x21, 0x22}, 'B'},  // Example entry 2
-    {0x03, {0x31, 0x32}, 'C'},*/  // Example entry 3
-    // Add more entries as needed
-};
 #endif
