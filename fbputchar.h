@@ -12,7 +12,7 @@ typedef struct KeyState {
     unsigned char keycode[2];
     char character;
     // Add other fields if needed
-};
+};KeyState;
 
 
 extern int fbopen(void);
