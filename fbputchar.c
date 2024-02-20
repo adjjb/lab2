@@ -15,6 +15,7 @@
 #include <fcntl.h>
 #include <sys/mman.h>
 #include <sys/ioctl.h>
+#include <stdio.h>
 
 #include <linux/fb.h>
 
@@ -121,7 +122,7 @@ void fbputs(const char *s, int row, int col)
 }
 
 char findWord(const struct KeyState dataset[], unsigned int a, unsigned int b, unsigned int c) {
-    const char *pressedKey = '|';  // Initialize to a default value
+    char pressedKey = '|';  // Initialize to a default value
 
     for (int i = 0; i < sizeof(dataset) / sizeof(dataset[0]); ++i) {
         if (dataset[i].modifiers == a &&
