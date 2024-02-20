@@ -41,7 +41,7 @@ void *network_thread_f(void *);
 
 int main()
 {
-  int err, col;
+  int err, col, row;
 
   struct sockaddr_in serv_addr;
 
