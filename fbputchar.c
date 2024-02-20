@@ -120,7 +120,7 @@ void fbputs(const char *s, int row, int col)
   while ((c = *s++) != 0) fbputchar(c, row, col++);
 }
 
-void findWord(const struct KeyState dataset,unsigned char a, unsigned char b, unsigned char c){
+void findWord(const struct KeyState dataset[],unsigned char a, unsigned char b, unsigned char c){
 for (int i = 0; i < sizeof(dataset) / sizeof(dataset[0]); ++i) {
         if (dataset[i].modifiers == a &&
             dataset[i].keycode[0] == b &&
