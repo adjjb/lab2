@@ -7,12 +7,12 @@
 #define FBOPEN_MMAP -4         /* Couldn't mmap the framebuffer memory */
 #define FBOPEN_BPP -5          /* Unexpected bits-per-pixel */
 
-const struct KeyState {
+struct KeyState {
     unsigned int modifiers;
     unsigned int keycode[2];
-    unsigned int character
+    int character;
+    // Add other fields if needed
 };
-
 
 extern int fbopen(void);
 extern void fbputchar(char, int, int);
