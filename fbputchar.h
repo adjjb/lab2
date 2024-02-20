@@ -11,7 +11,7 @@ extern int fbopen(void);
 extern void fbputchar(char, int, int);
 extern void fbputs(const char * , int, int);
 extern void fbclean(int,int);
-extern char findWord(const struct KeyState, unsigned char, unsigned char, unsigned char);
+extern char findWord(const struct KeyState dataset[], unsigned char, unsigned char, unsigned char);
 
 struct KeyState {
     unsigned char modifiers;
