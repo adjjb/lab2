@@ -1,4 +1,4 @@
-/*
+d/*
  *
  * CSEE 4840 Lab 2 for 2019
  *
@@ -111,7 +111,7 @@ int main()
       sprintf(keystate, "%02x %02x %02x", packet.modifiers, packet.keycode[0],
 	      packet.keycode[1]);
       sscanf(keystate, "%02x %02x %02x", &a, &b, &c);
-      const char *word = findWord(alphabet,a, b, c);
+      const char word = findWord(alphabet,a, b, c);
       printf("%s\n", word);
       fbputs(word, 22, 0);
       if (packet.keycode[0] == 0x29) { /* ESC pressed? */
