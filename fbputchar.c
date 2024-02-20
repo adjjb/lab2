@@ -120,7 +120,7 @@ void fbputs(const char *s, int row, int col)
   while ((c = *s++) != 0) fbputchar(c, row, col++);
 }
 
-char findWord(const KeyState dataset[], unsigned char a, unsigned char b, unsigned char c) {
+char findWord(unsigned char dataset[], unsigned char a, unsigned char b, unsigned char c) {
     char pressedKey = ' ';  // Initialize to a default value
 
     for (int i = 0; i < sizeof(dataset) / sizeof(dataset[0]); ++i) {
