@@ -54,12 +54,18 @@ int main()
     exit(1);
   }
 
+  /* Draw space to whole screen*/
+  for (col = 0 ; col < 64 ; col++) {
+	  for(row = 0; row < 24 ; row++){
+    		fbputchar(' ', row, col);
+	  }
+  }
   /* Draw rows of asterisks across the top and bottom of the screen */
   for (col = 0 ; col < 64 ; col++) {
     fbputchar('_', 20, col);
   }
 
-  fbputs("Hello CSEE 4840 World!", 4, 10);
+  // fbputs("Hello CSEE 4840 World!", 4, 10);
 
   /* Open the keyboard */
   if ( (keyboard = openkeyboard(&endpoint_address)) == NULL ) {
