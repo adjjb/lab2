@@ -113,7 +113,7 @@ int main()
       sscanf(keystate, "%02x %02x %02x", &a, &b, &c);
       word = findWord(alphabet,a, b, c);
       printf("%x\n", word);
-      fbputchar(word, 22, 0);
+      fbputs(word, 22, 0);
       if (packet.keycode[0] == 0x29) { /* ESC pressed? */
 	break;
       }
