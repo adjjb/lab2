@@ -10,8 +10,7 @@
 const struct KeyState {
     unsigned int modifiers;
     unsigned int keycode[2];
-    unsigned int character;
-    // Add other fields if needed
+    unsigned int character
 };
 
 
