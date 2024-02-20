@@ -55,7 +55,7 @@ int main()
   struct usb_keyboard_packet packet;
   int transferred;
   char keystate[12], word;
-  unsigned char a, b, c;
+  unsigned int a, b, c;
 
   if ((err = fbopen()) != 0) {
     fprintf(stderr, "Error: Could not open framebuffer: %d\n", err);
