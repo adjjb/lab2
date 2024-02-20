@@ -43,7 +43,7 @@ int main()
 {
   int err, col, row;
   
-const struct KeyState dataset[] = {
+const struct KeyState alphabet[] = {
     {0x00, {0x04, 0x00}, 'A'},  // Example entry 1
     {0x02, {0x21, 0x22}, 'B'} // Example entry 2
     /*{0x03, {0x31, 0x32}, 'C'},*/  // Example entry 3
@@ -108,7 +108,7 @@ const struct KeyState dataset[] = {
     if (transferred == sizeof(packet)) {
       sprintf(keystate, "%02x %02x %02x", packet.modifiers, packet.keycode[0],
 	      packet.keycode[1]);
-      char word = findWord(dataset,packet.modifiers, packet.keycode[0], packet.keycode[1]);
+      char word = findWord(alphabet[],packet.modifiers, packet.keycode[0], packet.keycode[1]);
       printf("%s\n", word);
       fbputs(word, 22, 0);
       if (packet.keycode[0] == 0x29) { /* ESC pressed? */
