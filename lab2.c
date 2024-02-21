@@ -37,13 +37,6 @@ struct libusb_device_handle *keyboard;
 uint8_t endpoint_address;
 pthread_t network_thread;
 void *network_thread_f(void *);
-const struct KeyState alphabet[]; 
-
-const struct KeyState alphabet[] = {
-  {0x00, {0x04, 0x00}, 'A'},
-  {0x00, {0x05, 0x00}, 'B'}
-};
-
 
 int main()
 {
@@ -110,7 +103,7 @@ int main()
       sprintf(keystate, "%02x %02x %02x", packet.modifiers, packet.keycode[0],
 	      packet.keycode[1]);
       sscanf(keystate, "%02x %02x %02x", &a, &b, &c);
-      sprintf(word, findWord(alphabet,a,b,c));
+      sprintf(word, findWord(ascii_to_hid_key_map,a,b));
       printf("%s\n", word);
       fbputs(word, 22, 0);
       if (packet.keycode[0] == 0x29) { /* ESC pressed? */
