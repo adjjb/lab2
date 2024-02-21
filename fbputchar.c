@@ -120,19 +120,7 @@ void fbputs(const char *s, int row, int col)
   while ((c = *s++) != 0) fbputchar(c, row, col++);
 }
 
-char findWord(const char data[][], unsigned char a, unsigned char b) {
-    char pressedKey = '|';  // Initialize to a default value
 
-    for (int i = 0; i <  sizeof(data)/sizeof(data[0]); ++i) {
-        if (data[i][0] == a &&
-            data[i][1] == b ){
-            pressedKey = data[i];
-            return pressedKey;
-        }
-    }
-
-    return pressedKey;  // Return a default value if the key is not found
-}
 /* 8 X 16 console font from /lib/kbd/consolefonts/lat0-16.psfu.gz
 
 od --address-radix=n --width=16 -v -t x1 -j 4 -N 2048 lat0-16.psfu
