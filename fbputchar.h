@@ -15,7 +15,7 @@ extern int fbopen(void);
 extern void fbputchar(char, int, int);
 extern void fbputs(const char *, int, int);
 extern void fbclean(int,int,int,int);
-extern char findWord(const char *, unsigned char, unsigned char);
+extern char findWord(const char [], unsigned char, unsigned char);
 
 const char ascii_to_hid_key_map[95][2] = {
     {0, KEY_SPACE}, {KEY_MOD_LSHIFT, KEY_1}, {KEY_MOD_LSHIFT, KEY_APOSTROPHE},
