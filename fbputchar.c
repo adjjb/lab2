@@ -120,13 +120,13 @@ void fbputs(const char *s, int row, int col)
   while ((c = *s++) != 0) fbputchar(c, row, col++);
 }
 
-char findWord(const char data[], unsigned char a, unsigned char b) {
+char findWord(const char data[][], unsigned char a, unsigned char b) {
     char pressedKey = '|';  // Initialize to a default value
 
     for (int i = 0; i <  sizeof(data)/sizeof(data[0]); ++i) {
         if (data[i][0] == a &&
-            data[i][b] == b ){
-            pressedKey = data[i]
+            data[i][1] == b ){
+            pressedKey = data[i];
             return pressedKey;
         }
     }
