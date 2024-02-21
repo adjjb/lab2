@@ -128,7 +128,7 @@ void *network_thread_f(void *ignored)
   while ( (n = read(sockfd, &recvBuf, BUFFER_SIZE - 1)) > 0 ) {
     recvBuf[n] = '\0';
     printf("%s", recvBuf);
-    fbputs(recvBuf, 3, 0);
+    fbputs(recvBuf, r, 0);
     r ++;
     if (r == 19){
 	fbclean(r,64,0,0);
