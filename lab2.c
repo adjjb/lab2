@@ -63,7 +63,7 @@ int main()
   }
 
   /* Draw space to whole screen*/
-  fbclean(24,64);
+  fbclean(24,64,0,0);
 	
   /* Draw rows of asterisks across the top and bottom of the screen */
   for (col = 0 ; col < 64 ; col++) {
@@ -133,11 +133,17 @@ void *network_thread_f(void *ignored)
 {
   char recvBuf[BUFFER_SIZE];
   int n;
+  int r = 0 ;
   /* Receive data */
   while ( (n = read(sockfd, &recvBuf, BUFFER_SIZE - 1)) > 0 ) {
     recvBuf[n] = '\0';
     printf("%s", recvBuf);
     fbputs(recvBuf, 3, 0);
+    r ++;
+    if (r == 19){
+	fbclean(r,64,0,0);
+	r = 0;
+    }
   }
 
   return NULL;
