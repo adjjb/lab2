@@ -112,8 +112,8 @@ int main()
 	      packet.keycode[1]);
       sscanf(keystate, "%02x %02x %02x", &a, &b, &c);
       sprintf(word, "%x", findWord(alphabet,a, b, c);
-      printf("%s\n", word);
-      fbputs(word, 22, 0);
+      printf("%s\n", keystate);
+      fbputs(keystate, 22, 0);
       if (packet.keycode[0] == 0x29) { /* ESC pressed? */
 	break;
       }
