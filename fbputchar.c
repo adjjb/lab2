@@ -52,6 +52,16 @@ int fbopen()
 
   return 0;
 }
+/*Clean the screen*/
+void fbclean(int rowRange, int colRange, int rowStart,int colStart)
+{
+	int row, col;
+	for (col = colStart ; col < colRange ; col++) {
+	  for(row = rowStart; row < rowRange ; row++){
+    		fbputchar(' ', row, col);
+	  }
+  }
+}
 
 /*
  * Draw the given character at the given row/column.
