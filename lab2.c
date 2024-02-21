@@ -108,6 +108,8 @@ int main()
         if (ascii_to_hid_key_map[i][0] == a &&
             ascii_to_hid_key_map[i][1] == b ){
             word = ascii_to_hid_key_map[i];
+	}
+      } 
       printf("%s\n", word);
       fbputs(word, 22, 0);
       if (packet.keycode[0] == 0x29) { /* ESC pressed? */
