@@ -125,7 +125,7 @@ char findWord(const char data, unsigned char a, unsigned char b) {
 
     for (int i = 0; i <  sizeof(data)/sizeof(data[0]); ++i) {
         if (data[i][0] == a &&
-            data[i][b] == b {
+            data[i][b] == b ){
             pressedKey = dataset[i]
             return pressedKey;
         }
