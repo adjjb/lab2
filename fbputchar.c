@@ -55,11 +55,11 @@ int fbopen()
 }
 
 /* Clean the screen with space*/
-void fbclean(int rowRange, int colRange)
+void fbclean(int rowRange, int colRange, int rowStart,int colStart)
 {
 	int row, col;
-	for (col = 0 ; col < colRange ; col++) {
-	  for(row = 0; row < rowRange ; row++){
+	for (col = colStart ; col < colRange ; col++) {
+	  for(row = rowStart; row < rowRange ; row++){
     		fbputchar(' ', row, col);
 	  }
   }
