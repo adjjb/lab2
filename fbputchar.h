@@ -17,6 +17,6 @@ struct KeyState {
 extern int fbopen(void);
 extern void fbputchar(char, int, int);
 extern void fbputs(const char * , int, int);
-extern void fbclean(int,int);
+extern void fbclean(int,int,int,int);
 extern int findWord(const struct KeyState dataset[], unsigned int, unsigned int, unsigned int);
 #endif
