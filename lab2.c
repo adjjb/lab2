@@ -110,8 +110,8 @@ int main()
     if (transferred == sizeof(packet)) {
       sprintf(keystate, "%02x %02x %02x", packet.modifiers, packet.keycode[0],
 	      packet.keycode[1]);
-      sscanf(keystate, "%02x %02x %02x", &a, &b, &c);
-      sprintf(word, "%x", findWord(alphabet,a, b, c);
+      //sscanf(keystate, "%02x %02x %02x", &a, &b, &c);
+      //sprintf(word, "%x", findWord(alphabet,a, b, c);
       printf("%s\n", keystate);
       fbputs(keystate, 22, 0);
       if (packet.keycode[0] == 0x29) { /* ESC pressed? */
