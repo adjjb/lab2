@@ -37,12 +37,12 @@ struct libusb_device_handle *keyboard;
 uint8_t endpoint_address;
 pthread_t network_thread;
 void *network_thread_f(void *);
-const KeyState alphabet[]; 
+const struct KeyState alphabet[]; 
 
 alphabet = {
   {0x00, {0x04, 0x00}, 'A'},
   {0x00, {0x05, 0x00}, 'B'}
-}
+};
 
 
 int main()
