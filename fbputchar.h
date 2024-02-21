@@ -7,16 +7,11 @@
 #define FBOPEN_MMAP -4         /* Couldn't mmap the framebuffer memory */
 #define FBOPEN_BPP -5          /* Unexpected bits-per-pixel */
 
-/*struct KeyState {
-    unsigned int modifiers;
-    unsigned int keycode[2];
-    char character;
-    // Add other fields if needed
-};*/
 
 extern int fbopen(void);
 extern void fbputchar(char, int, int);
 extern void fbputs(const char * , int, int);
 extern void fbclean(int,int,int,int);
 //extern int findWord(const struct KeyState dataset[], unsigned int, unsigned int, unsigned int);
+
 #endif
