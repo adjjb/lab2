@@ -103,7 +103,11 @@ int main()
       sprintf(keystate, "%02x %02x %02x", packet.modifiers, packet.keycode[0],
 	      packet.keycode[1]);
       sscanf(keystate, "%02x %02x %02x", &a, &b, &c);
-      sprintf(word, findWord(ascii_to_hid_key_map,a,b));
+
+      for (int i = 0; i <  sizeof(ascii_to_hid_key_map)/sizeof(ascii_to_hid_key_map[0]); ++i) {
+        if (ascii_to_hid_key_map[i][0] == a &&
+            ascii_to_hid_key_map[i][1] == b ){
+            word = ascii_to_hid_key_map[i];
       printf("%s\n", word);
       fbputs(word, 22, 0);
       if (packet.keycode[0] == 0x29) { /* ESC pressed? */
