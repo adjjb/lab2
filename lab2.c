@@ -35,7 +35,6 @@ int sockfd; /* Socket file descriptor */
 
 struct libusb_device_handle *keyboard;
 uint8_t endpoint_address;
-const struct KeyState alphabet[];
 pthread_t network_thread;
 void *network_thread_f(void *);
 
@@ -103,8 +102,6 @@ int main()
     if (transferred == sizeof(packet)) {
       sprintf(keystate, "%02x %02x %02x", packet.modifiers, packet.keycode[0],
 	      packet.keycode[1]);
-      //sscanf(keystate, "%02x %02x %02x", &a, &b, &c);
-      //sprintf(word, "%x", findWord(alphabet,a, b, c);
       printf("%s\n", keystate);
       fbputs(keystate, 22, 0);
       if (packet.keycode[0] == 0x29) { /* ESC pressed? */
