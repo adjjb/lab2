@@ -39,12 +39,12 @@ const struct KeyState alphabet[];
 pthread_t network_thread;
 void *network_thread_f(void *);
 
- const struct KeyState alphabet[] = {
+/* const struct KeyState alphabet[] = {
 	    {0x00, {0x04, 0x00}, 'A'},  // Example entry 1
 	    {0x02, {0x21, 0x22}, 'B'} // Example entry 2
 	    /*{0x03, {0x31, 0x32}, 'C'},*/  // Example entry 3
 	    // Add more entries as needed
-	};
+	};*/
 
 int main()
 {
@@ -55,7 +55,7 @@ int main()
   struct usb_keyboard_packet packet;
   int transferred;
   char keystate[12],word;
-  unsigned int a, b, c;
+  //unsigned int a, b, c;
 
   if ((err = fbopen()) != 0) {
     fprintf(stderr, "Error: Could not open framebuffer: %d\n", err);
