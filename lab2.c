@@ -39,7 +39,7 @@ pthread_t network_thread;
 void *network_thread_f(void *);
 const struct KeyState alphabet[]; 
 
-alphabet = {
+const struct KeyState alphabet[] = {
   {0x00, {0x04, 0x00}, 'A'},
   {0x00, {0x05, 0x00}, 'B'}
 };
