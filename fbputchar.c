@@ -121,7 +121,7 @@ void fbputs(const char *s, int row, int col)
   while ((c = *s++) != 0) fbputchar(c, row, col++);
 }
 
-int findWord(const struct KeyState dataset[], unsigned int a, unsigned int b, unsigned int c) {
+/*int findWord(const struct KeyState dataset[], unsigned int a, unsigned int b, unsigned int c) {
     int pressedKey = '|';  // Initialize to a default value
 
     for (int i = 0; i < sizeof(dataset) / sizeof(dataset[0]); ++i) {
@@ -134,7 +134,7 @@ int findWord(const struct KeyState dataset[], unsigned int a, unsigned int b, un
     }
 
     return pressedKey;  // Return a default value if the key is not found
-}
+}*/
 
 /* 8 X 16 console font from /lib/kbd/consolefonts/lat0-16.psfu.gz
 
