@@ -127,34 +127,6 @@ od --address-radix=n --width=16 -v -t x1 -j 4 -N 2048 lat0-16.psfu
 
 */
 
-char deleteLastCharacter(char **word) {
-    if (*word == NULL || strlen(*word) == 0) {
-        // Handle empty string or NULL pointer
-        return "";
-    }
-
-    size_t length = strlen(*word);
-    
-    // Allocate a new string without the last character
-    char *newWord = malloc(length);
-    if (newWord == NULL) {
-        // Handle memory allocation failure
-        return "";
-    }
-
-    // Copy the original string to the new one without the last character
-    strncpy(newWord, *word, length - 1);
-
-    // Null-terminate the new string
-    newWord[length - 1] = '\0';
-
-    // Free the original memory
-    free(*word);
-
-    // Update the pointer to point to the new string
-    *word = newWord;
-     return *word;
-}
 
 static unsigned char font[] = {
   0x00, 0x00, 0x7e, 0xc3, 0x99, 0x99, 0xf3, 0xe7, 0xe7, 0xff, 0xe7, 0xe7, 0x7e, 0x00, 0x00, 0x00,
