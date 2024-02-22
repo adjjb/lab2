@@ -79,8 +79,8 @@ int main()
   struct usb_keyboard_packet packet;
   int transferred;
   char keystate[12];
-  char *word = "";
-  unsigned int a,b,c;
+  char word[64];
+  unsigned int a,b,c, order;
 	
   if ((err = fbopen()) != 0) {
     fprintf(stderr, "Error: Could not open framebuffer: %d\n", err);
@@ -137,10 +137,11 @@ int main()
 	      packet.keycode[1]);
       sscanf(keystate, "%02x %02x %02x", &a, &b, &c);
 
-      for (int i = 1; i <  96; ++i) {
-        if (ascii_to_hid_key_map[i][1] == a && ascii_to_hid_key_map[i][2] == b ){
+      for (int i = 0; i < 95; ++i) {
+        if (ascii_to_hid_key_map[i][0] == a && ascii_to_hid_key_map[i][1] == b ){
 		
-            	word = strcat(word, ascii_to_hid_key_map[i][3]);
+            	word[order]  = ascii_to_hid_key_map[i][2];
+		order ++;
 	}
       } 
       printf("%s\n", word);
