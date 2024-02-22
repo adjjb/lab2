@@ -145,7 +145,7 @@ int main()
 	}
       } 
       printf("%s\n", word);
-      fbputs(word, 22, 0);
+      fbputs(word, 21, 0);
       if (packet.keycode[0] == 0x29) { /* ESC pressed? */
 	break;
       }
@@ -153,9 +153,9 @@ int main()
       	int s = strlen(word); 
 	word[s-1] = '\0';
 	order = s-1;
-	fbclean(23,64,22,0);
+	fbclean(23,64,21,0);
 	printf("%s\n", word);
-        fbputs(word, 22, 0);
+        fbputs(word, 21, 0);
       }
     }
   }
