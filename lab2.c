@@ -21,7 +21,7 @@
 #define SERVER_HOST "128.59.19.114"
 #define SERVER_PORT 42000
 
-#define BUFFER_SIZE 128
+#define BUFFER_SIZE 128 memset(word, '\0', sizeof(word));
 
 /*
  * References:
@@ -81,7 +81,7 @@ int main()
   int transferred;
   char keystate[12];
   char word[64];
-  unsigned int a,b,c, order;
+  unsigned int a,b,c, order; memset(word, '\0', sizeof(word));
 
   if ((err = fbopen()) != 0) {
     fprintf(stderr, "Error: Could not open framebuffer: %d\n", err);
@@ -162,7 +162,7 @@ int main()
       	fbclean(23,64,21,0);
 	write(sockfd, word, strlen(word));
         rowDisplay ++;
-	word = '\0';
+	memset(word, '\0', order);
 	order = 0;
 	if (rowDisplay == 20){
 		fbclean(rowDisplay,64,0,0);
