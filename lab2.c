@@ -37,6 +37,7 @@ struct libusb_device_handle *keyboard;
 uint8_t endpoint_address;
 pthread_t network_thread;
 void *network_thread_f(void *);
+int rowDisplay = 0 ;
 
 const char ascii_to_hid_key_map[95][3]= {
     {0, KEY_SPACE, ' '}, {KEY_MOD_LSHIFT, KEY_1, '!'}, {KEY_MOD_LSHIFT, KEY_APOSTROPHE,'\"'},
@@ -81,7 +82,7 @@ int main()
   char keystate[12];
   char word[64];
   unsigned int a,b,c, order;
-  int rowDisplay = 0 ;
+
   if ((err = fbopen()) != 0) {
     fprintf(stderr, "Error: Could not open framebuffer: %d\n", err);
     exit(1);
