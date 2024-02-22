@@ -68,7 +68,7 @@ void *network_thread_f(void *);
 };*/
 
 
-const char ascii_to_hid_key_map[26][3] = {
+const char ascii_to_hid_key_map[41][3] = {
     {0, KEY_SPACE, ' '}, {KEY_MOD_LSHIFT, KEY_1, '!'}, {KEY_MOD_LSHIFT, KEY_APOSTROPHE,'\"'},
     {KEY_MOD_LSHIFT, KEY_3, '#'}, {KEY_MOD_LSHIFT, KEY_4,'$'}, {KEY_MOD_LSHIFT, KEY_5,'%'},
     {KEY_MOD_LSHIFT, KEY_7, '&'}, {0, KEY_APOSTROPHE,'\''}, {KEY_MOD_LSHIFT, KEY_9,'('},
@@ -76,6 +76,11 @@ const char ascii_to_hid_key_map[26][3] = {
     {0, KEY_COMMA, ','}, {0, KEY_DOT, '.' }, {0, KEY_SLASH,'/'}, {0, KEY_0, '0'},
     {0, KEY_1, '1'}, {0, KEY_2, '2'}, {0, KEY_3, '3'}, {0, KEY_4, '4'}, {0, KEY_5, '5'}, {0, KEY_6, '6'},
     {0, KEY_7, '7'}, {0, KEY_8, '8'}, {0, KEY_9, '9'}, {KEY_MOD_LSHIFT, KEY_SEMICOLON,':'},
+    {0, KEY_SEMICOLON,';'}, {KEY_MOD_LSHIFT, KEY_COMMA, '<'}, {0, KEY_EQUAL,'='},
+    {KEY_MOD_LSHIFT, KEY_DOT, '>'}, {KEY_MOD_LSHIFT, KEY_SLASH,'?'}, {KEY_MOD_LSHIFT, KEY_2, '@'},
+    {KEY_MOD_LSHIFT, KEY_A, 'A'}, {KEY_MOD_LSHIFT, KEY_B, 'B'}, {KEY_MOD_LSHIFT, KEY_C, 'C'},
+    {KEY_MOD_LSHIFT, KEY_D, 'D'}, {KEY_MOD_LSHIFT, KEY_E, 'E'}, {KEY_MOD_LSHIFT, KEY_F, 'F'},
+    {KEY_MOD_LSHIFT, KEY_G, 'G'}, {KEY_MOD_LSHIFT, KEY_H, 'H'}, {KEY_MOD_LSHIFT, KEY_I, 'I'},
 };
 
 int main()
