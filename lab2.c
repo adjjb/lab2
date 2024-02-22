@@ -161,10 +161,9 @@ int main()
       else if (packet.keycode[0] == 0x28){
       	fbclean(23,64,21,0);
 	write(sockfd, word, strlen(word));
-	printf("%s\n", word);
-	fbputs(word, rowDisplay, 0);
         rowDisplay ++;
 	word[0] = '\0';
+	order = 0;
 	if (rowDisplay == 20){
 		fbclean(rowDisplay,64,0,0);
 		rowDisplay = 0;
