@@ -151,7 +151,7 @@ int main()
       }
       if (packet.keycode[0] == 0x2a){  /*backspace*/
       	int s = strlen(word); 
-	word[s-1] = ' ';
+	word[s-1] = '\0';
 	order = s-1;
 	fbclean(23,64,22,0);
 	printf("%s\n", word);
