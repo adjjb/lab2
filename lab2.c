@@ -71,7 +71,7 @@ const char ascii_to_hid_key_map[95][3]= {
 
 
 int main()
-{
+{rpwDisplay
   int err, col, row;
 
   struct sockaddr_in serv_addr;
@@ -159,7 +159,7 @@ int main()
       }
       else if (packet.keycode[0] == 0x28){
       	fbclean(23,64,21,0);
-	n = write(sockfd, word, strlen(word));
+	write(sockfd, word, strlen(word));
 	printf("%s\n", word);
 	fbputs(word, rpwDisplay, 0);
         rpwDisplay ++;
@@ -188,7 +188,7 @@ void *network_thread_f(void *ignored)
   while ( (n = read(sockfd, &recvBuf, BUFFER_SIZE - 1)) > 0 ) {
     recvBuf[n] = '\0';
     printf("%s", recvBuf);
-    fbputs(recvBuf, r, 0);
+    fbputs(recvBuf, rpwDisplay, 0);
     rpwDisplay ++;
     if (rpwDisplay == 20){
 	fbclean(rpwDisplay,64,0,0);
