@@ -71,7 +71,7 @@ const char ascii_to_hid_key_map[95][3]= {
 
 
 int main()
-{rpwDisplay
+{
   int err, col, row;
 
   struct sockaddr_in serv_addr;
@@ -81,7 +81,7 @@ int main()
   char keystate[12];
   char word[64];
   unsigned int a,b,c, order;
-  int rpwDisplay = 0 ;
+  int rowDisplay = 0 ;
   if ((err = fbopen()) != 0) {
     fprintf(stderr, "Error: Could not open framebuffer: %d\n", err);
     exit(1);
@@ -161,11 +161,12 @@ int main()
       	fbclean(23,64,21,0);
 	write(sockfd, word, strlen(word));
 	printf("%s\n", word);
-	fbputs(word, rpwDisplay, 0);
-        rpwDisplay ++;
-	if (rpwDisplay == 20){
-		fbclean(rpwDisplay,64,0,0);
-		rpwDisplay = 0;
+	fbputs(word, rowDisplay, 0);
+        rowDisplay ++;
+	word[0] = '\0';
+	if (rowDisplay == 20){
+		fbclean(rowDisplay,64,0,0);
+		rowDisplay = 0;
    	 }
       }
     }
@@ -188,11 +189,11 @@ void *network_thread_f(void *ignored)
   while ( (n = read(sockfd, &recvBuf, BUFFER_SIZE - 1)) > 0 ) {
     recvBuf[n] = '\0';
     printf("%s", recvBuf);
-    fbputs(recvBuf, rpwDisplay, 0);
-    rpwDisplay ++;
-    if (rpwDisplay == 20){
-	fbclean(rpwDisplay,64,0,0);
-	rpwDisplay = 0;
+    fbputs(recvBuf, rowDisplay, 0);
+    rowDisplay ++;
+    if (rowDisplay == 20){
+	fbclean(rowDisplay,64,0,0);
+	rowDisplay = 0;
     }
   }
 
