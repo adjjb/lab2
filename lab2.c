@@ -79,7 +79,7 @@ int main()
   struct usb_keyboard_packet packet;
   int transferred;
   char keystate[12];
-  const char *word = "";
+  char *word = "";
   unsigned int a,b,c;
 	
   if ((err = fbopen()) != 0) {
