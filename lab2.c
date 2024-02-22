@@ -69,7 +69,7 @@ void *network_thread_f(void *);
 
 
 const char ascii_to_hid_key_map[2][3] = {
-    {KEY_MOD_LSHIFT, KEY_APOSTROPHE,'"'},
+    {KEY_MOD_LSHIFT, KEY_APOSTROPHE,'\"'},
     {KEY_MOD_LSHIFT, KEY_3, '#'},
 };
 
