@@ -152,7 +152,7 @@ int main()
       if (packet.keycode[0] == 0x2a){  /*backspace*/
       	int size = strlen(word); 
 	word[size-1] = '\0';
-	fbclean(22,64,23,0);
+	fbclean(23,64,22,0);
 	printf("%s\n", word);
         fbputs(word, 22, 0);
       }
