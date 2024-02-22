@@ -149,9 +149,10 @@ int main()
       if (packet.keycode[0] == 0x29) { /* ESC pressed? */
 	break;
       }
-      if (packet.keycode[0] == 0x2a){
+      if (packet.keycode[0] == 0x2a){ /*backspace*/
       	int size = strlen(word); //Total size of string
 	word[size-1] = '\0';
+	fbclean(22,64,22,0;)
 	printf("%s\n", word);
         fbputs(word, 22, 0);
       }
