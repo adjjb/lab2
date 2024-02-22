@@ -164,16 +164,11 @@ int main()
 	fbclean(23,64,21,0);
 	if (b!= 0 ){
 		write(sockfd, word, strlen(word));
-		rowDisplay ++;
 		for (int i = 0; i < order; ++i) {
 			word[i] = '\0';
 		}
 		order = 0;
 	}
-	if (rowDisplay == 20){
-		fbclean(rowDisplay,64,0,0);
-		rowDisplay = 0;
-	 }
       }
        
     }
