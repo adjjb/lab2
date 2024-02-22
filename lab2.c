@@ -139,7 +139,7 @@ int main()
 
       for (int i = 0; i <  sizeof(ascii_to_hid_key_map)/sizeof(ascii_to_hid_key_map[0]); ++i) {
         if (ascii_to_hid_key_map[i][0] == a && ascii_to_hid_key_map[i][1] == b ){
-		int record = ascii_to_hid_key_map[i][2]
+		int record = ascii_to_hid_key_map[i][2];
 	    	char newWord = (char) record;
             	word = strcat(word, newWord);
 	}
