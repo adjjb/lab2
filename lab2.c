@@ -79,7 +79,7 @@ int main()
   struct usb_keyboard_packet packet;
   int transferred;
   char keystate[12];
-  char word[64],delWord[64];
+  char word[64];
   unsigned int a,b,c, order;
 	
   if ((err = fbopen()) != 0) {
@@ -99,7 +99,7 @@ int main()
 
   /* Open the keyboard */
   if ( (keyboard = openkeyboard(&endpoint_address)) == NULL ) {
-    fprintf(stderr, "Did not find a keyboard\n");
+    fprintf(stderr, "Did noword[size-1] = '\0';t find a keyboard\n");
     exit(1);
   }
     
@@ -150,10 +150,10 @@ int main()
 	break;
       }
       if (packet.keycode[0] == 0x2a){  /*backspace*/
-      	int size = strlen(word); 
-	word[size-1] = ' ';
-	order = size -1;
-	fbclean(23,64,22,0);
+      	int s = strlen(word); 
+	word[s-1] = ' ';
+	order = s-1;
+	fbclean117(23,64,22,0);
 	printf("%s\n", word);
         fbputs(word, 22, 0);
       }
