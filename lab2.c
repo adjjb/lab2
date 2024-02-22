@@ -81,7 +81,7 @@ int main()
   char keystate[12];
   char word[64];
   unsigned int a,b,c, order;
-	
+  int rpwDisplay = 0 ;
   if ((err = fbopen()) != 0) {
     fprintf(stderr, "Error: Could not open framebuffer: %d\n", err);
     exit(1);
@@ -149,13 +149,24 @@ int main()
       if (packet.keycode[0] == 0x29) { /* ESC pressed? */
 	break;
       }
-      if (packet.keycode[0] == 0x2a){  /*backspace*/
+      else if (packet.keycode[0] == 0x2a){  /*backspace*/
       	int s = strlen(word); 
 	word[s-1] = '\0';
 	order = s-1;
 	fbclean(23,64,21,0);
 	printf("%s\n", word);
         fbputs(word, 21, 0);
+      }
+      else if (packet.keycode[0] == 0x28){
+      	fbclean(23,64,21,0);
+	n = write(sockfd, word, strlen(word));
+	printf("%s\n", word);
+	fbputs(word, rpwDisplay, 0);
+        rpwDisplay ++;
+	if (rpwDisplay == 20){
+		fbclean(rpwDisplay,64,0,0);
+		rpwDisplay = 0;
+   	 }
       }
     }
   }
@@ -173,16 +184,15 @@ void *network_thread_f(void *ignored)
 {
   char recvBuf[BUFFER_SIZE];
   int n;
-  int r = 0 ;
   /* Receive data */
   while ( (n = read(sockfd, &recvBuf, BUFFER_SIZE - 1)) > 0 ) {
     recvBuf[n] = '\0';
     printf("%s", recvBuf);
     fbputs(recvBuf, r, 0);
-    r ++;
-    if (r == 19){
-	fbclean(r,64,0,0);
-	r = 0;
+    rpwDisplay ++;
+    if (rpwDisplay == 20){
+	fbclean(rpwDisplay,64,0,0);
+	rpwDisplay = 0;
     }
   }
 
