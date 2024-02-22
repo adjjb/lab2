@@ -78,7 +78,8 @@ int main()
 
   struct usb_keyboard_packet packet;
   int transferred;
-  char keystate[12],word;
+  char keystate[12];
+  char *word == "";
   unsigned int a,b,c;
 	
   if ((err = fbopen()) != 0) {
@@ -137,9 +138,9 @@ int main()
       sscanf(keystate, "%02x %02x %02x", &a, &b, &c);
 
       for (int i = 0; i <  sizeof(ascii_to_hid_key_map)/sizeof(ascii_to_hid_key_map[0]); ++i) {
-        if (ascii_to_hid_key_map[i][0] == a &&
-            ascii_to_hid_key_map[i][1] == b ){
-            word = (char)ascii_to_hid_key_map[i][2];
+        if (ascii_to_hid_key_map[i][0] == a && ascii_to_hid_key_map[i][1] == b ){
+	    char newWord = ascii_to_hid_key_map[i][2];
+            word = strcat(word, newWord);
 	}
       } 
       printf("%s\n", word);
