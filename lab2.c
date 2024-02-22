@@ -35,32 +35,68 @@ int sockfd; /* Socket file descriptor */
 
 struct libusb_device_handle *keyboard;
 uint8_t endpoint_address;
-
 pthread_t network_thread;
 void *network_thread_f(void *);
+int rowDisplay = 0 ;
+
+const char ascii_to_hid_key_map[95][3]= {
+    {0, KEY_SPACE, ' '}, {KEY_MOD_LSHIFT, KEY_1, '!'}, {KEY_MOD_LSHIFT, KEY_APOSTROPHE,'\"'},
+    {KEY_MOD_LSHIFT, KEY_3, '#'}, {KEY_MOD_LSHIFT, KEY_4,'$'}, {KEY_MOD_LSHIFT, KEY_5,'%'},
+    {KEY_MOD_LSHIFT, KEY_7, '&'}, {0, KEY_APOSTROPHE,'\''}, {KEY_MOD_LSHIFT, KEY_9,'('},
+    {KEY_MOD_LSHIFT, KEY_0,')'}, {KEY_MOD_LSHIFT, KEY_8, '*'}, {KEY_MOD_LSHIFT, KEY_EQUAL, '+'},
+    {0, KEY_COMMA, ','}, {0, KEY_DOT, '.' }, {0, KEY_SLASH,'/'}, {0, KEY_0, '0'},
+    {0, KEY_1, '1'}, {0, KEY_2, '2'}, {0, KEY_3, '3'}, {0, KEY_4, '4'}, {0, KEY_5, '5'}, {0, KEY_6, '6'},
+    {0, KEY_7, '7'}, {0, KEY_8, '8'}, {0, KEY_9, '9'}, {KEY_MOD_LSHIFT, KEY_SEMICOLON,':'},
+    {0, KEY_SEMICOLON,';'}, {KEY_MOD_LSHIFT, KEY_COMMA, '<'}, {0, KEY_EQUAL,'='},
+    {KEY_MOD_LSHIFT, KEY_DOT, '>'}, {KEY_MOD_LSHIFT, KEY_SLASH,'?'}, {KEY_MOD_LSHIFT, KEY_2, '@'},
+    {KEY_MOD_LSHIFT, KEY_A, 'A'}, {KEY_MOD_LSHIFT, KEY_B, 'B'}, {KEY_MOD_LSHIFT, KEY_C, 'C'},
+    {KEY_MOD_LSHIFT, KEY_D, 'D'}, {KEY_MOD_LSHIFT, KEY_E, 'E'}, {KEY_MOD_LSHIFT, KEY_F, 'F'},
+    {KEY_MOD_LSHIFT, KEY_G, 'G'}, {KEY_MOD_LSHIFT, KEY_H, 'H'}, {KEY_MOD_LSHIFT, KEY_I, 'I'},
+    {KEY_MOD_LSHIFT, KEY_J, 'J'}, {KEY_MOD_LSHIFT, KEY_K, 'K'}, {KEY_MOD_LSHIFT, KEY_L, 'L'},
+    {KEY_MOD_LSHIFT, KEY_M, 'M'}, {KEY_MOD_LSHIFT, KEY_N, 'N'}, {KEY_MOD_LSHIFT, KEY_O, 'Q'},
+    {KEY_MOD_LSHIFT, KEY_P, 'P'}, {KEY_MOD_LSHIFT, KEY_Q, 'Q'}, {KEY_MOD_LSHIFT, KEY_R, 'R'},
+    {KEY_MOD_LSHIFT, KEY_S, 'S'}, {KEY_MOD_LSHIFT, KEY_T, 'T'}, {KEY_MOD_LSHIFT, KEY_U, 'U'},
+    {KEY_MOD_LSHIFT, KEY_V, 'V'}, {KEY_MOD_LSHIFT, KEY_W, 'W'}, {KEY_MOD_LSHIFT, KEY_X, 'X'},
+    {KEY_MOD_LSHIFT, KEY_Y, 'Y'}, {KEY_MOD_LSHIFT, KEY_Z, 'Z'}, {0, KEY_LEFTBRACE,'['},
+    {0, KEY_BACKSLASH,'\\'}, {0, KEY_RIGHTBRACE,']'}, {KEY_MOD_LSHIFT, KEY_6, '^'},
+    {KEY_MOD_LSHIFT, KEY_MINUS,'_'},{0, KEY_MINUS,'-'}, {0, KEY_GRAVE,'`'}, {0, KEY_A,'a'}, {0, KEY_B,'b'},
+    {0, KEY_C, 'c'}, {0, KEY_D, 'd'}, {0, KEY_E, 'e'}, {0, KEY_F, 'f'}, {0, KEY_G, 'g'}, {0, KEY_H, 'h'},
+    {0, KEY_I, 'i'}, {0, KEY_J, 'j'}, {0, KEY_K, 'k'}, {0, KEY_L, 'l'}, {0, KEY_M, 'm'}, {0, KEY_N, 'n'},
+    {0, KEY_O, 'o'}, {0, KEY_P, 'p'}, {0, KEY_Q, 'q'}, {0, KEY_R, 'r'}, {0, KEY_S, 's'}, {0, KEY_T, 't'},
+    {0, KEY_U, 'u'}, {0, KEY_V, 'v'}, {0, KEY_W, 'w'}, {0, KEY_X, 'x'}, {0, KEY_Y, 'y'}, {0, KEY_Z, 'z'},
+    {KEY_MOD_LSHIFT, KEY_LEFTBRACE,'{'}, {KEY_MOD_LSHIFT, KEY_BACKSLASH,'|'},
+    {KEY_MOD_LSHIFT, KEY_RIGHTBRACE,'}'}, {KEY_MOD_LSHIFT, KEY_GRAVE,'~'},
+};
+
+
+
 
 int main()
 {
-  int err, col;
+  int err, col, row;
 
   struct sockaddr_in serv_addr;
 
   struct usb_keyboard_packet packet;
   int transferred;
   char keystate[12];
+  char word[64];
+  unsigned int a,b,c, order; memset(word, '\0', sizeof(word));
 
   if ((err = fbopen()) != 0) {
     fprintf(stderr, "Error: Could not open framebuffer: %d\n", err);
     exit(1);
   }
 
+  /* Draw space to whole screen*/
+  fbclean(24,64,0,0);
+	
   /* Draw rows of asterisks across the top and bottom of the screen */
   for (col = 0 ; col < 64 ; col++) {
-    fbputchar('*', 0, col);
-    fbputchar('*', 23, col);
+    fbputchar('_', 20, col);
   }
 
-  fbputs("Hello CSEE 4840 World!", 4, 10);
+  // fbputs("Hello CSEE 4840 World!", 4, 10);
 
   /* Open the keyboard */
   if ( (keyboard = openkeyboard(&endpoint_address)) == NULL ) {
@@ -100,11 +136,42 @@ int main()
     if (transferred == sizeof(packet)) {
       sprintf(keystate, "%02x %02x %02x", packet.modifiers, packet.keycode[0],
 	      packet.keycode[1]);
-      printf("%s\n", keystate);
-      fbputs(keystate, 6, 0);
-      if (packet.keycode[0] == 0x29) { /* ESC pressed? */
-	break;
-      }
+      sscanf(keystate, "%02x %02x %02x", &a, &b, &c);
+      if (a != 0 && b != 0){
+	      for (int i = 0; i < 95; ++i) {
+	        if (ascii_to_hid_key_map[i][0] == a && ascii_to_hid_key_map[i][1] == b ){
+			
+	            	word[order]  = ascii_to_hid_key_map[i][2];
+			order ++;
+		}
+	      } 
+	      printf("%s\n", word);
+	      fbputs(word, 21, 0);
+	      if (packet.keycode[0] == 0x29) { /* ESC pressed? */
+		break;
+	      }
+	      else if (packet.keycode[0] == 0x2a){  /*backspace*/
+	      	int s = strlen(word); 
+		word[s-1] = '\0';
+		order = s-1;
+		fbclean(23,64,21,0);
+		printf("%s\n", word);
+	        fbputs(word, 21, 0);
+	      }
+	      else if (packet.keycode[0] == 0x28){
+	      	fbclean(23,64,21,0);
+		write(sockfd, word, strlen(word));
+	        rowDisplay ++;
+		for (int i = 0; i < order; ++i) {
+	        	word[i] = '\0';
+	    	}
+		order = 0;
+		if (rowDisplay == 20){
+			fbclean(rowDisplay,64,0,0);
+			rowDisplay = 0;
+	   	 }
+	      }
+       }
     }
   }
 
@@ -125,7 +192,12 @@ void *network_thread_f(void *ignored)
   while ( (n = read(sockfd, &recvBuf, BUFFER_SIZE - 1)) > 0 ) {
     recvBuf[n] = '\0';
     printf("%s", recvBuf);
-    fbputs(recvBuf, 8, 0);
+    fbputs(recvBuf, rowDisplay, 0);
+    rowDisplay ++;
+    if (rowDisplay == 20){
+	fbclean(rowDisplay,64,0,0);
+	rowDisplay = 0;
+    }
   }
 
   return NULL;
