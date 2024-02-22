@@ -99,7 +99,7 @@ int main()
 
   /* Open the keyboard */
   if ( (keyboard = openkeyboard(&endpoint_address)) == NULL ) {
-    fprintf(stderr, "Did noword[size-1] = '\0';t find a keyboard\n");
+    fprintf(stderr, "Did not find a keyboard\n");
     exit(1);
   }
     
@@ -153,7 +153,7 @@ int main()
       	int s = strlen(word); 
 	word[s-1] = ' ';
 	order = s-1;
-	fbclean117(23,64,22,0);
+	fbclean(23,64,22,0);
 	printf("%s\n", word);
         fbputs(word, 22, 0);
       }
