@@ -1,4 +1,4 @@
-/*
+e/*
  *
  * CSEE 4840 Lab 2 for 2019
  *
@@ -146,7 +146,6 @@ int main()
 	}
       } 
       if (b!= 0 ){
-	      printf("%s\n", word);
 	      fbputs(word, 21, 0);
       }
       if (packet.keycode[0] == 0x29) { /* ESC pressed? */
@@ -157,7 +156,6 @@ int main()
 	word[s-1] = '\0';
 	order = s-1;
 	fbclean(23,64,21,0);
-	printf("%s\n", word);
 	fbputs(word, 21, 0);
       }
       else if (packet.keycode[0] == 0x28){
@@ -193,7 +191,7 @@ void *network_thread_f(void *ignored)
     printf("%s", recvBuf);
     fbputs(recvBuf, rowDisplay, 0);
     rowDisplay ++;
-    if (rowDisplay == 20){
+    if (rowDisplay == 21){
 	fbclean(rowDisplay,64,0,0);
 	rowDisplay = 0;
     }
