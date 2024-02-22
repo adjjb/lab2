@@ -114,7 +114,7 @@ int main()
   serv_addr.sin_family = AF_INET;
   serv_addr.sin_port = htons(SERVER_PORT);
   if ( inet_pton(AF_INET, SERVER_HOST, &serv_addr.sin_addr) <= 0) {
-    fprintf(stderr, "Error: Could not convert host IP \"%s\"\n", SERVER_HOST);word[size-1] = '\0';
+    fprintf(stderr, "Error: Could not convert host IP \"%s\"\n", SERVER_HOST);
     exit(1);
   }
 
