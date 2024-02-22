@@ -137,10 +137,10 @@ int main()
 	      packet.keycode[1]);
       sscanf(keystate, "%02x %02x %02x", &a, &b, &c);
 
-      for (int i = 0; i <  95; ++i) {
-        if (ascii_to_hid_key_map[i][0] == a && ascii_to_hid_key_map[i][1] == b ){
+      for (int i = 1; i <  96; ++i) {
+        if (ascii_to_hid_key_map[i][1] == a && ascii_to_hid_key_map[i][2] == b ){
 		
-            	word = strcat(word, ascii_to_hid_key_map[i][2]);
+            	word = strcat(word, ascii_to_hid_key_map[i][3]);
 	}
       } 
       printf("%s\n", word);
