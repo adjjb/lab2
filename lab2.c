@@ -38,7 +38,7 @@ uint8_t endpoint_address;
 pthread_t network_thread;
 void *network_thread_f(void *);
 
-/*const char ascii_to_hid_key_map[95][3]= {
+const char ascii_to_hid_key_map[95][3]= {
     {0, KEY_SPACE, ' '}, {KEY_MOD_LSHIFT, KEY_1, '!'}, {KEY_MOD_LSHIFT, KEY_APOSTROPHE,'"'},
     {KEY_MOD_LSHIFT, KEY_3, '#'}, {KEY_MOD_LSHIFT, KEY_4,'$'}, {KEY_MOD_LSHIFT, KEY_5,'%'},
     {KEY_MOD_LSHIFT, KEY_7, '&'}, {0, KEY_APOSTROPHE,' \' '}, {KEY_MOD_LSHIFT, KEY_9,'('},
@@ -57,7 +57,7 @@ void *network_thread_f(void *);
     {KEY_MOD_LSHIFT, KEY_S, 'S'}, {KEY_MOD_LSHIFT, KEY_T, 'T'}, {KEY_MOD_LSHIFT, KEY_U, 'U'},
     {KEY_MOD_LSHIFT, KEY_V, 'V'}, {KEY_MOD_LSHIFT, KEY_W, 'W'}, {KEY_MOD_LSHIFT, KEY_X, 'X'},
     {KEY_MOD_LSHIFT, KEY_Y, 'Y'}, {KEY_MOD_LSHIFT, KEY_Z, 'Z'}, {0, KEY_LEFTBRACE,'['},
-    {0, KEY_BACKSLASH,'\'}, {0, KEY_RIGHTBRACE,']'}, {KEY_MOD_LSHIFT, KEY_6, '^'},
+    {0, KEY_BACKSLASH,'\\'}, {0, KEY_RIGHTBRACE,']'}, {KEY_MOD_LSHIFT, KEY_6, '^'},
     {KEY_MOD_LSHIFT, KEY_MINUS,'_'},{0, KEY_MINUS,'-'}, {0, KEY_GRAVE,'`'}, {0, KEY_A,'a'}, {0, KEY_B,'b'},
     {0, KEY_C, 'c'}, {0, KEY_D, 'd'}, {0, KEY_E, 'e'}, {0, KEY_F, 'f'}, {0, KEY_G, 'g'}, {0, KEY_H, 'h'},
     {0, KEY_I, 'i'}, {0, KEY_J, 'j'}, {0, KEY_K, 'k'}, {0, KEY_L, 'l'}, {0, KEY_M, 'm'}, {0, KEY_N, 'n'},
@@ -65,32 +65,10 @@ void *network_thread_f(void *);
     {0, KEY_U, 'u'}, {0, KEY_V, 'v'}, {0, KEY_W, 'w'}, {0, KEY_X, 'x'}, {0, KEY_Y, 'y'}, {0, KEY_Z, 'z'},
     {KEY_MOD_LSHIFT, KEY_LEFTBRACE,'{'}, {KEY_MOD_LSHIFT, KEY_BACKSLASH,'|'},
     {KEY_MOD_LSHIFT, KEY_RIGHTBRACE,'}'}, {KEY_MOD_LSHIFT, KEY_GRAVE,'~'},
-};*/
-
-
-const char ascii_to_hid_key_map[73][3] = {
-    {0, KEY_SPACE, ' '}, {KEY_MOD_LSHIFT, KEY_1, '!'}, {KEY_MOD_LSHIFT, KEY_APOSTROPHE,'\"'},
-    {KEY_MOD_LSHIFT, KEY_3, '#'}, {KEY_MOD_LSHIFT, KEY_4,'$'}, {KEY_MOD_LSHIFT, KEY_5,'%'},
-    {KEY_MOD_LSHIFT, KEY_7, '&'}, {0, KEY_APOSTROPHE,'\''}, {KEY_MOD_LSHIFT, KEY_9,'('},
-    {KEY_MOD_LSHIFT, KEY_0,')'}, {KEY_MOD_LSHIFT, KEY_8, '*'}, {KEY_MOD_LSHIFT, KEY_EQUAL, '+'},
-    {0, KEY_COMMA, ','}, {0, KEY_DOT, '.' }, {0, KEY_SLASH,'/'}, {0, KEY_0, '0'},
-    {0, KEY_1, '1'}, {0, KEY_2, '2'}, {0, KEY_3, '3'}, {0, KEY_4, '4'}, {0, KEY_5, '5'}, {0, KEY_6, '6'},
-    {0, KEY_7, '7'}, {0, KEY_8, '8'}, {0, KEY_9, '9'}, {KEY_MOD_LSHIFT, KEY_SEMICOLON,':'},
-    {0, KEY_SEMICOLON,';'}, {KEY_MOD_LSHIFT, KEY_COMMA, '<'}, {0, KEY_EQUAL,'='},
-    {KEY_MOD_LSHIFT, KEY_DOT, '>'}, {KEY_MOD_LSHIFT, KEY_SLASH,'?'}, {KEY_MOD_LSHIFT, KEY_2, '@'},
-    {KEY_MOD_LSHIFT, KEY_A, 'A'}, {KEY_MOD_LSHIFT, KEY_B, 'B'}, {KEY_MOD_LSHIFT, KEY_C, 'C'},
-    {KEY_MOD_LSHIFT, KEY_D, 'D'}, {KEY_MOD_LSHIFT, KEY_E, 'E'}, {KEY_MOD_LSHIFT, KEY_F, 'F'},
-    {KEY_MOD_LSHIFT, KEY_G, 'G'}, {KEY_MOD_LSHIFT, KEY_H, 'H'}, {KEY_MOD_LSHIFT, KEY_I, 'I'},
-    {KEY_MOD_LSHIFT, KEY_J, 'J'}, {KEY_MOD_LSHIFT, KEY_K, 'K'}, {KEY_MOD_LSHIFT, KEY_L, 'L'},
-    {KEY_MOD_LSHIFT, KEY_M, 'M'}, {KEY_MOD_LSHIFT, KEY_N, 'N'}, {KEY_MOD_LSHIFT, KEY_O, 'Q'},
-    {KEY_MOD_LSHIFT, KEY_P, 'P'}, {KEY_MOD_LSHIFT, KEY_Q, 'Q'}, {KEY_MOD_LSHIFT, KEY_R, 'R'},
-    {KEY_MOD_LSHIFT, KEY_S, 'S'}, {KEY_MOD_LSHIFT, KEY_T, 'T'}, {KEY_MOD_LSHIFT, KEY_U, 'U'},
-    {KEY_MOD_LSHIFT, KEY_V, 'V'}, {KEY_MOD_LSHIFT, KEY_W, 'W'}, {KEY_MOD_LSHIFT, KEY_X, 'X'},
-    {KEY_MOD_LSHIFT, KEY_Y, 'Y'}, {KEY_MOD_LSHIFT, KEY_Z, 'Z'}, {0, KEY_LEFTBRACE,'['},
-    {0, KEY_BACKSLASH,'\'}, {0, KEY_RIGHTBRACE,']'}, {KEY_MOD_LSHIFT, KEY_6, '^'},
-    {KEY_MOD_LSHIFT, KEY_MINUS,'_'},{0, KEY_MINUS,'-'}, {0, KEY_GRAVE,'`'}, {0, KEY_A,'a'}, {0, KEY_B,'b'},
-    {0, KEY_C, 'c'}, {0, KEY_D, 'd'}, {0, KEY_E, 'e'}, {0, KEY_F, 'f'}, {0, KEY_G, 'g'}, {0, KEY_H, 'h'},
 };
+
+
+
 
 int main()
 {
