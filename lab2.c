@@ -137,41 +137,45 @@ int main()
       sprintf(keystate, "%02x %02x %02x", packet.modifiers, packet.keycode[0],
 	      packet.keycode[1]);
       sscanf(keystate, "%02x %02x %02x", &a, &b, &c);
-      if (a != 0 && b != 0){
-	      for (int i = 0; i < 95; ++i) {
-	        if (ascii_to_hid_key_map[i][0] == a && ascii_to_hid_key_map[i][1] == b ){
-			
-	            	word[order]  = ascii_to_hid_key_map[i][2];
-			order ++;
-		}
-	      } 
+      
+      for (int i = 0; i < 95; ++i) {
+	if (ascii_to_hid_key_map[i][0] == a && ascii_to_hid_key_map[i][1] == b ){
+		
+		word[order]  = ascii_to_hid_key_map[i][2];
+		order ++;
+	}
+      } 
+      if (b!= 0 ){
 	      printf("%s\n", word);
 	      fbputs(word, 21, 0);
-	      if (packet.keycode[0] == 0x29) { /* ESC pressed? */
-		break;
-	      }
-	      else if (packet.keycode[0] == 0x2a){  /*backspace*/
-	      	int s = strlen(word); 
-		word[s-1] = '\0';
-		order = s-1;
-		fbclean(23,64,21,0);
-		printf("%s\n", word);
-	        fbputs(word, 21, 0);
-	      }
-	      else if (packet.keycode[0] == 0x28){
-	      	fbclean(23,64,21,0);
+      }
+      if (packet.keycode[0] == 0x29) { /* ESC pressed? */
+	break;
+      }
+      else if (packet.keycode[0] == 0x2a){  /*backspace*/
+	int s = strlen(word); 
+	word[s-1] = '\0';
+	order = s-1;
+	fbclean(23,64,21,0);
+	printf("%s\n", word);
+	fbputs(word, 21, 0);
+      }
+      else if (packet.keycode[0] == 0x28){
+	fbclean(23,64,21,0);
+	if (b!= 0 ){
 		write(sockfd, word, strlen(word));
-	        rowDisplay ++;
+		rowDisplay ++;
 		for (int i = 0; i < order; ++i) {
-	        	word[i] = '\0';
-	    	}
+			word[i] = '\0';
+		}
 		order = 0;
-		if (rowDisplay == 20){
-			fbclean(rowDisplay,64,0,0);
-			rowDisplay = 0;
-	   	 }
-	      }
-       }
+	}
+	if (rowDisplay == 20){
+		fbclean(rowDisplay,64,0,0);
+		rowDisplay = 0;
+	 }
+      }
+       
     }
   }
 
