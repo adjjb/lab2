@@ -151,11 +151,11 @@ int main()
       }
       if (packet.keycode[0] == 0x2a){  /*backspace*/
       	int size = strlen(word); 
-	word[size-1] = '\0';
-	order --;
+	word[size-1] = ' ';
+	order = size -1;
 	fbclean(23,64,22,0);
-	printf("%s\n", delWord);
-        fbputs(delWord, 22, 0);
+	printf("%s\n", word);
+        fbputs(word, 22, 0);
       }
     }
   }
