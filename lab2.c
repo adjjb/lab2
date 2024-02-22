@@ -21,7 +21,7 @@
 #define SERVER_HOST "128.59.19.114"
 #define SERVER_PORT 42000
 
-#define BUFFER_SIZE 128 memset(word, '\0', sizeof(word));
+#define BUFFER_SIZE 128
 
 /*
  * References:
