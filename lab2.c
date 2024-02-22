@@ -162,7 +162,7 @@ int main()
       	fbclean(23,64,21,0);
 	write(sockfd, word, strlen(word));
         rowDisplay ++;
-	word[0] = '\0';
+	word = '\0';
 	order = 0;
 	if (rowDisplay == 20){
 		fbclean(rowDisplay,64,0,0);
