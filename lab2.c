@@ -150,7 +150,8 @@ int main()
 	break;
       }
       if (packet.keycode[0] == 0x2a){
-      	word = deleteLastCharacter(word);
+      	int size = strlen(word); //Total size of string
+	word[size-1] = '\0';
 	printf("%s\n", word);
         fbputs(word, 22, 0);
       }
