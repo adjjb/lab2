@@ -16,7 +16,7 @@
 
 /* Update SERVER_HOST to be the IP address of
  * the chat server you are connecting to
- */
+ */newWord
 /* arthur.cs.columbia.edu */
 #define SERVER_HOST "128.59.19.114"
 #define SERVER_PORT 42000
@@ -41,7 +41,7 @@ void *network_thread_f(void *);
 const char ascii_to_hid_key_map[95][3]= {
     {0, KEY_SPACE, ' '}, {KEY_MOD_LSHIFT, KEY_1, '!'}, {KEY_MOD_LSHIFT, KEY_APOSTROPHE,'\"'},
     {KEY_MOD_LSHIFT, KEY_3, '#'}, {KEY_MOD_LSHIFT, KEY_4,'$'}, {KEY_MOD_LSHIFT, KEY_5,'%'},
-    {KEY_MOD_LSHIFT, KEY_7, '&'}, {0, KEY_APOSTROPHE,'\''}, {KEY_MOD_LSHIFT, KEY_9,'('},
+    {KEY_MOD_LSHIFT, KEY_7, '&'}, {0, KEY_APOSTROPHE,'\''newWordnewWord}, {KEY_MOD_LSHIFT, KEY_9,'('},
     {KEY_MOD_LSHIFT, KEY_0,')'}, {KEY_MOD_LSHIFT, KEY_8, '*'}, {KEY_MOD_LSHIFT, KEY_EQUAL, '+'},
     {0, KEY_COMMA, ','}, {0, KEY_DOT, '.' }, {0, KEY_SLASH,'/'}, {0, KEY_0, '0'},
     {0, KEY_1, '1'}, {0, KEY_2, '2'}, {0, KEY_3, '3'}, {0, KEY_4, '4'}, {0, KEY_5, '5'}, {0, KEY_6, '6'},
@@ -139,9 +139,9 @@ int main()
 
       for (int i = 0; i <  sizeof(ascii_to_hid_key_map)/sizeof(ascii_to_hid_key_map[0]); ++i) {
         if (ascii_to_hid_key_map[i][0] == a && ascii_to_hid_key_map[i][1] == b ){
-		const char *newWord = &(ascii_to_hid_key_map[i][2]);
-		const char characterValue = *newWord;
-            	word = strcat(word, characterValue);
+		// const char *newWord = &(ascii_to_hid_key_map[i][2]);
+		// const char characterValue = *newWord;
+            	word = strcat(word, ascii_to_hid_key_map[i][2]);
 	}
       } 
       printf("%s\n", word);
