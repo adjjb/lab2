@@ -149,6 +149,11 @@ int main()
       if (packet.keycode[0] == 0x29) { /* ESC pressed? */
 	break;
       }
+      if (packet.keycode[0] == 0x2a){
+      	word = deleteLastCharacter(word);
+	printf("%s\n", word);
+        fbputs(word, 22, 0);
+      }
     }
   }
 
