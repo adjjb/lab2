@@ -139,8 +139,7 @@ int main()
 
       for (int i = 0; i <  sizeof(ascii_to_hid_key_map)/sizeof(ascii_to_hid_key_map[0]); ++i) {
         if (ascii_to_hid_key_map[i][0] == a && ascii_to_hid_key_map[i][1] == b ){
-		// const char *newWord = &(ascii_to_hid_key_map[i][2]);
-		// const char characterValue = *newWord;
+		
             	word = strcat(word, ascii_to_hid_key_map[i][2]);
 	}
       } 
