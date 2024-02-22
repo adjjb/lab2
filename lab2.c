@@ -79,7 +79,7 @@ int main()
   struct usb_keyboard_packet packet;
   int transferred;
   char keystate[12];
-  char word[64];
+  char word[64],delWord[64];
   unsigned int a,b,c, order;
 	
   if ((err = fbopen()) != 0) {
@@ -114,7 +114,7 @@ int main()
   serv_addr.sin_family = AF_INET;
   serv_addr.sin_port = htons(SERVER_PORT);
   if ( inet_pton(AF_INET, SERVER_HOST, &serv_addr.sin_addr) <= 0) {
-    fprintf(stderr, "Error: Could not convert host IP \"%s\"\n", SERVER_HOST);
+    fprintf(stderr, "Error: Could not convert host IP \"%s\"\n", SERVER_HOST);word[size-1] = '\0';
     exit(1);
   }
 
@@ -152,9 +152,10 @@ int main()
       if (packet.keycode[0] == 0x2a){  /*backspace*/
       	int size = strlen(word); 
 	word[size-1] = '\0';
+	order --;
 	fbclean(23,64,22,0);
-	printf("%s\n", word);
-        fbputs(word, 22, 0);
+	printf("%s\n", delWord);
+        fbputs(delWord, 22, 0);
       }
     }
   }
