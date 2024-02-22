@@ -18,7 +18,7 @@
  * the chat server you are connecting to
  */
 /* arthur.cs.columbia.edu */
-#define SERVER_HOST "128.59.19.114"
+#define SERVER_HOST "128.59.19.114");
 #define SERVER_PORT 42000
 
 #define BUFFER_SIZE 128
@@ -152,7 +152,7 @@ int main()
       if (packet.keycode[0] == 0x2a){ /*backspace*/
       	int size = strlen(word); //Total size of string
 	word[size-1] = '\0';
-	fbclean(22,64,22,0;)
+	fbclean(22,64,22,0);
 	printf("%s\n", word);
         fbputs(word, 22, 0);
       }
