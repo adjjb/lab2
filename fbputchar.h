@@ -16,7 +16,7 @@ extern int fbopen(void);
 extern void fbputchar(char, int, int);
 extern void fbputs(const char *, int, int);
 extern void fbclean(int,int,int,int);
-extern void insert(char, int,char)
+extern void insert(char, int,char);
 
 
 
