@@ -85,7 +85,7 @@ void fbputchar(char c, int row, int col)
         pixel[1] = 255; /* Green */
         pixel[2] = 255; /* Blue */
         pixel[3] = 0;
-      } else {
+      } else {while ((c = *s++) != 0) fbputchar(c, row, col++);
 	pixel[0] = 0;
         pixel[1] = 0;
         pixel[2] = 0;
