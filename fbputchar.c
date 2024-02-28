@@ -85,7 +85,7 @@ void fbputchar(char c, int row, int col)
         pixel[1] = 255; /* Green */
         pixel[2] = 255; /* Blue */
         pixel[3] = 0;
-      } else {while ((c = *s++) != 0) fbputchar(c, row, col++);
+      } else {
 	pixel[0] = 0;
         pixel[1] = 0;
         pixel[2] = 0;
@@ -118,11 +118,11 @@ void fbputs(const char *s, int row, int col)
 {
   char c;
   int count = 0;
-  int changLine = 0;
+  int changeLine = 0;
   while ((c = *s++) != 0) fbputchar(c, row+changeLine, col++);
   count++;
   if (count > 63){
-	changLine ++; 
+	changeLine ++; 
 	col = 0;
 	count = 0;
 	}
