@@ -150,7 +150,7 @@ int main()
       if (b!= 0 ){
 	      for (int i = 0; i < strlen(word); ++i) {
         	smallWord[i-64*changeLine] = word[i];
-		fbputs(smallWord,21+changeLine , 0)
+		fbputs(smallWord,21+changeLine , 0);
 		if (i > (changeLine+1)*64){
 			changeLine ++;
 		      	for (int j = 0; j < 64; ++i) {
