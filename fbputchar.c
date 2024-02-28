@@ -124,23 +124,23 @@ void fbputs(const char *s, int row, int col)
     count++;
 
     if (count > 63) {
-        changeLine++;
+        changeLine ++;
         col = 0;
         count = 0;
     }
 }
 }
 
-void insert(char word[], int order,char newWord)
+void insertWord(char word[], int order,char newWord)
 {
 	char tem[256];
 	int i,j = 0;
-	while (i < (strlen(word) -order)){
+	while (i < (256 -order)){
 		tem[i] = word[order + i];
 		i ++;
 	}
 	word[order] = newWord;
-	for (j =0; j < (strlen(word) -order); j ++){
+	for (j =0; j < (256 -order); j ++){
 		word[j+1+order] = tem[j];
 	}
 }
