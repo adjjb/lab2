@@ -117,7 +117,19 @@ void fbputchar(char c, int row, int col)
 void fbputs(const char *s, int row, int col)
 {
   char c;
-  while ((c = *s++) != 0) fbputchar(c, row, col++);
+  int count = 0;
+  int changLine = 0;
+  while (*s != 0) {
+    char c = *s;
+    fbputchar(c, row + changLine, col++);
+    s++;
+    count++;
+    if (count > 63){
+    	changLine ++; 
+	col = 0;
+	count = 0;
+    }
+}
 }
 
 
