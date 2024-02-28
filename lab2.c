@@ -85,6 +85,7 @@ int main()
 
   if ((err = fbopen()) != 0) {
     fprintf(stderr, "Error: Could not open framebuffer: %d\n", err);
+      word[order +1] = '|';
     exit(1);      
   }
 
@@ -146,7 +147,7 @@ int main()
 	}
       } 
       if (b!= 0 ){
-	      word[order +1] = '|';
+	      word[order +1] = '/';
 	      fbputs(word,21,0);
       }
       if (packet.keycode[0] == 0x29) { /* ESC pressed? */
@@ -162,6 +163,7 @@ int main()
       else if (packet.keycode[0] == 0x28){
 	fbclean(24,64,21,0);
 	if (b!= 0 ){
+		word[order +1 ] = '\0';
 		write(sockfd, word, strlen(word));
 		for (int i = 0; i < order; ++i) {
 			word[i] = '\0';
