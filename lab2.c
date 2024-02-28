@@ -82,6 +82,7 @@ int main()
   char keystate[12];
   char word[256];
   unsigned int a,b,c, order; memset(word, '\0', sizeof(word));
+  int couldEnter = 1;
 
   if ((err = fbopen()) != 0) {
     fprintf(stderr, "Error: Could not open framebuffer: %d\n", err);
@@ -148,9 +149,18 @@ int main()
       } 
       if (b!= 0 ){
 	      fbputs(word,21,0);
+	      if (couldEnter == 1){
+	      	int oldOrdr = order;
+	      }
       }
       if (packet.keycode[0] == 0x29) { /* ESC pressed? */
 	break;
+      }
+      else if (packet.keycode[0] == 0x50){ /*Left arrow*/
+	couldEnter = 0;
+      }
+      else if (packet.keycode[0] == 0x4f){ /*Right arrow*/
+	couldEnter = 1;
       }
       else if (packet.keycode[0] == 0x2a){  /*backspace*/
 	int s = strlen(word); 
@@ -159,7 +169,7 @@ int main()
 	fbclean(23,64,21,0);
 	fbputs(word, 21, 0);
       }
-      else if (packet.keycode[0] == 0x28){
+      else if (packet.keycode[0] == 0x28 && couldEnter == 1){
 	fbclean(24,64,21,0);
 	if (b!= 0 ){
 		word[order] = '\0';
