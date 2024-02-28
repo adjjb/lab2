@@ -87,7 +87,7 @@ int main()
 
   if ((err = fbopen()) != 0) {
     fprintf(stderr, "Error: Could not open framebuffer: %d\n", err);
-    exit(1);      } 
+    exit(1);      
   }
 
   /* Draw space to whole screen*/
