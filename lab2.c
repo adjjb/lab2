@@ -147,7 +147,7 @@ int main()
       } 
       if (b!= 0 ){
 	      for (int i = 0; i < strlen(word) / 64; ++i) {
-        	fbputs(word + i * 64, 21 + i, 0);
+        	fbputs(word [i * 64:(i+1)*64], 21 + i, 0);
    		 }
       }
       if (packet.keycode[0] == 0x29) { /* ESC pressed? */
