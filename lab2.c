@@ -162,7 +162,7 @@ int main()
       else if (packet.keycode[0] == 0x28){
 	fbclean(24,64,21,0);
 	if (b!= 0 ){
-		word[order +1 ] = '\0';
+		word[order] = '\0';
 		write(sockfd, word, strlen(word));
 		for (int i = 0; i < order; ++i) {
 			word[i] = '\0';
