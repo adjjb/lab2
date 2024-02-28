@@ -81,13 +81,13 @@ int main()
   int transferred;
   char keystate[12];
   char word[64];
-  char smallWord[64];
+  char smallWord[256];
   int changeLine = 0;
   unsigned int a,b,c, order; memset(word, '\0', sizeof(word));
 
   if ((err = fbopen()) != 0) {
     fprintf(stderr, "Error: Could not open framebuffer: %d\n", err);
-    exit(1);
+    exit(1);      } 
   }
 
   /* Draw space to whole screen*/
