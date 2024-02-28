@@ -80,7 +80,7 @@ int main()
   struct usb_keyboard_packet packet;
   int transferred;
   char keystate[12];
-  char word[64];
+  char word[256];
   unsigned int a,b,c, order; memset(word, '\0', sizeof(word));
 
   if ((err = fbopen()) != 0) {
@@ -146,7 +146,8 @@ int main()
 	}
       } 
       if (b!= 0 ){
-	      fbputs(word, 21, 0);
+	      for i in range (strlen(word) / 64):
+	      	fbputs(word[i*64:(i+1)*64], 21+i, 0);
       }
       if (packet.keycode[0] == 0x29) { /* ESC pressed? */
 	break;
