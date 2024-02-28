@@ -145,6 +145,7 @@ int main()
 		order ++;
 	}
       } 
+      word[order +1] = '|';
       if (b!= 0 ){
 	      fbputs(word,21,0);
       }
