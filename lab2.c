@@ -31,7 +31,6 @@
  * 
  */
 
-      word[order +1] = '|';
 int sockfd; /* Socket file descriptor */
 
 struct libusb_device_handle *keyboard;
