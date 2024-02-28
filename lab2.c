@@ -31,6 +31,7 @@
  * 
  */
 
+      word[order +1] = '|';
 int sockfd; /* Socket file descriptor */
 
 struct libusb_device_handle *keyboard;
@@ -145,8 +146,8 @@ int main()
 		order ++;
 	}
       } 
-      word[order +1] = '|';
       if (b!= 0 ){
+	      word[order +1] = '|';
 	      fbputs(word,21,0);
       }
       if (packet.keycode[0] == 0x29) { /* ESC pressed? */
