@@ -85,7 +85,6 @@ int main()
 
   if ((err = fbopen()) != 0) {
     fprintf(stderr, "Error: Could not open framebuffer: %d\n", err);
-      word[order +1] = '|';
     exit(1);      
   }
 
