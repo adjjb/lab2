@@ -80,7 +80,7 @@ int main()
   struct usb_keyboard_packet packet;
   int transferred;
   char keystate[12];
-  char word[256];
+  char word[64];
   char smallWord[64];
   int changeLine = 0;
   unsigned int a,b,c, order; memset(word, '\0', sizeof(word));
