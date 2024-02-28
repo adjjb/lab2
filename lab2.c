@@ -155,8 +155,9 @@ int main()
 			changeLine ++;
 			for (int j = 0; j < 64; ++i) {
 				smallWord[j] = '\0';
-		}
-	      } 
+			}
+	      	} 
+	      }
 	  
       }
       if (packet.keycode[0] == 0x29) { /* ESC pressed? */
