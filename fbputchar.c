@@ -133,16 +133,7 @@ void fbputs(const char *s, int row, int col)
 
 void insertWord(char word[], int order,int newWord)
 {
-	char tem[256];
-	int i,j = 0;
-	while (i < (256 -order)){
-		tem[i] = word[order + i];
-		i ++;
-	}
 	word[order] = newWord;
-	for (j =0; j < (256 -order); j ++){
-		word[j+1+order] = tem[j];
-	}
 }
 
 /* 8 X 16 console font from /lib/kbd/consolefonts/lat0-16.psfu.gz
