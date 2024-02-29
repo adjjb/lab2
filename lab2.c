@@ -77,7 +77,7 @@ int main()
   int err, col;
 
   struct sockaddr_in serv_addr;
-row
+
   struct usb_keyboard_packet packet;
   int transferred;
   char keystate[12];
