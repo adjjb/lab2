@@ -82,6 +82,7 @@ int main()
   int transferred;
   char keystate[12];
   char word[256];
+  char tem[256];
   unsigned int a,b,c, order; memset(word, '\0', sizeof(word));
   int couldEnter = 1;
   int oldOrder ;
@@ -202,7 +203,7 @@ int main()
 
 		/*Send the message and clean the word variable*/
 		write(sockfd, word, strlen(word));
-		for (int k = 0; k < 64; k ++) {
+		for (int k = 0; k < 256; k ++) {
 			word[k] = '\0';
 		}
 		order = 0;
