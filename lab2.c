@@ -150,14 +150,19 @@ int main()
       } 
       if (b!= 0 ){
 	      fbputs(word,21,0);
-	      if (couldEnter == 1){
-	      	 oldOrder = order;
-	      }
       }
       if (packet.keycode[0] == 0x29) { /* ESC pressed? */
 	break;
       }
-      
+      else if (packet.keycode[0] == 0x50){ /*Left arrow*/
+	 if (couldEnter == 1){
+	      	 oldOrder = order;
+	      }
+	couldEnter = 0;
+	word[order] = word[order -1];
+	word[order - 1] = '|';
+	order --;
+      }
       else if (packet.keycode[0] == 0x2a){  /*backspace*/
 	int s = strlen(word); 
 	word[s-1] = '\0';
