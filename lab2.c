@@ -99,8 +99,8 @@ int main()
     fbputchar('_', 20, col);
   }
 
-  // fbputs("Hello CSEE 4840 World!", 4, 10);
-
+  word [0] = '|';
+   
   /* Open the keyboard */
   if ( (keyboard = openkeyboard(&endpoint_address)) == NULL ) {
     fprintf(stderr, "Did not find a keyboard\n");
@@ -144,34 +144,39 @@ int main()
       for (int i = 0; i < 95; ++i) {
 	if (ascii_to_hid_key_map[i][0] == a && ascii_to_hid_key_map[i][1] == b ){
 
-		for (int i = order+1; i < strlen(word);i ++){
+		for (int i = strlen(word); i >= order ;i --){
 				word[i] = word[i-1];
 		}
 		word[order] = ascii_to_hid_key_map[i][2];
-		word[order +1] = '|';
 		order ++;
 	}
       } 
+	    
       if (b!= 0 ){
 	      fbputs(word,21,0);
       }
       if (packet.keycode[0] == 0x29) { /* ESC pressed? */
 	break;
       }
+
+      /* Press the arrow, only move the cursor through exchange 
+      the neighbour position */
       else if (packet.keycode[0] == 0x50){ /*Left arrow*/
 	word[order] = word[order -1];
 	word[order - 1] = '|';
 	order --;
         fbputs(word,21,0);
-      }
+      }   
       else if (packet.keycode[0] == 0x4f){ /*Left arrow*/
 	word[order] = word[order + 1];
 	word[order + 1] = '|';
 	order ++;
 	fbputs(word,21,0);
       }
+	      
       else if (packet.keycode[0] == 0x2a){  /*backspace*/
-	/*When the consur is at the end of the sentences and the mid of the sentences*/
+	/*When the consur is at the mid of the sentences
+ 	  The total length of the word should be reduce by one*/
 	for (int i = order; i < strlen(word);i ++){
 		word[i-1] = word[i];
 	}
