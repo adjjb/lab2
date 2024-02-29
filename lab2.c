@@ -99,7 +99,7 @@ int main()
     fbputchar('_', 20, col);
   }
 
-  word [0] = '|';
+
    
   /* Open the keyboard */
   if ( (keyboard = openkeyboard(&endpoint_address)) == NULL ) {
@@ -143,8 +143,8 @@ int main()
       
       for (int i = 0; i < 95; ++i) {
 	if (ascii_to_hid_key_map[i][0] == a && ascii_to_hid_key_map[i][1] == b ){
-
-		for (int i = strlen(word); i >= order ;i --){
+		word[strlen(word)] = ' ';
+		for (int i = strlen(word); i > order ;i --){
 				word[i] = word[i-1];
 		}
 		word[order] = ascii_to_hid_key_map[i][2];
