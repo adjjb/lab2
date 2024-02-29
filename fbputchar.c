@@ -73,6 +73,7 @@ void fbputchar(char c, int row, int col)
   unsigned char pixels, *pixelp = font + FONT_HEIGHT * c;
   unsigned char mask;
   unsigned char *pixel, *left = framebuffer +
+
     (row * FONT_HEIGHT * 2 + fb_vinfo.yoffset) * fb_finfo.line_length +
     (col * FONT_WIDTH * 2 + fb_vinfo.xoffset) * BITS_PER_PIXEL / 8;
   for (y = 0 ; y < FONT_HEIGHT * 2 ; y++, left += fb_finfo.line_length) {
@@ -131,7 +132,7 @@ void fbputs(const char *s, int row, int col, int screen)
   else {
 	  while ((c = *s++) != 0) {
 	    fbputchar(c, row + changeLine, col++);
-	    if (count > 63) {
+	    if (col > 63) {
 		changeLine ++;
 		col = 0;
 	    }
