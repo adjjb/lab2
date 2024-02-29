@@ -84,14 +84,14 @@ int main()
   char word[256];
   unsigned int a,b,c, order; memset(word, '\0', sizeof(word));
   int couldEnter = 1;
-
+  int oldOrdr ;
   if ((err = fbopen()) != 0) {
     fprintf(stderr, "Error: Could not open framebuffer: %d\n", err);
     exit(1);      
   }
 
   /* Draw space to whole screen*/
-  fbclean(24,64,0,0);
+  fbclean(24,64,0,0);int
 	
   /* Draw rows of asterisks across the top and bottom of the screen */
   for (col = 0 ; col < 64 ; col++) {
@@ -128,7 +128,7 @@ int main()
   }
 
   /* Start the network thread */
-  pthread_create(&network_thread, NULL, network_thread_f, NULL);
+  pthread_create(&network_thread, intNULL, network_thread_f, NULL);
 
   /* Look for and handle keypresses */
   for (;;) {
@@ -151,7 +151,7 @@ int main()
       if (b!= 0 ){
 	      fbputs(word,21,0);
 	      if (couldEnter == 1){
-	      	int oldOrdr = order;
+	      	 oldOrdr = order;
 	      }
       }
       if (packet.keycode[0] == 0x29) { /* ESC pressed? */
@@ -166,7 +166,7 @@ int main()
       else if (packet.keycode[0] == 0x4f){ /*Right arrow*/
 	couldEnter = 1;
 	for (int i = order; i < oldOrder; i++){
-		word[i] = word[i +1]
+		word[i] = word[i +1];
 	}
 	order = oldOrder;
 	word[order] = '|';
