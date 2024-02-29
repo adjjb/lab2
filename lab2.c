@@ -89,20 +89,7 @@ int main()
     fprintf(stderr, "Error: Could not open framebuffer: %d\n", err);
     exit(1);      
   }
-else if (packet.keycode[0] == 0x50){ /*Left arrow*/
-	couldEnter = 0;
-	word[order] = word[order -1];
-	word[order - 1] = '|';
-	order --;
-      }
-      else if (packet.keycode[0] == 0x4f){ /*Right arrow*/
-	couldEnter = 1;
-	for (int i = order; i < oldOrder; i++){
-		word[i] = word[i +1];
-	}
-	order = oldOrder;
-	word[order] = '|';
-      }
+
   /* Draw space to whole screen*/
   fbclean(24,64,0,0);
 	
