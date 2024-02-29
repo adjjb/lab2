@@ -82,7 +82,7 @@ int main()
   int transferred;
   char keystate[12];
   char word[512];
-  unsigned int a,b,c; 
+  unsigned int a,b,c; count
   unsigned order = 0;
 	
   if ((err = fbopen()) != 0) {
@@ -216,7 +216,6 @@ int main()
 		fbputs(word, 21, 0);
 	}
       }
-       count
     }
   }
 
