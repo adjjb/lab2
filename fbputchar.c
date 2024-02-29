@@ -121,13 +121,15 @@ void fbputs(const char *s, int row, int col, int screen)
   int count = 0;
   int changeLine = 0;
   if (screen == 1){
+	  count = 24;
   	  while ((c = *s++) != 0) {
+		
     		fbputchar(c, row + changeLine, col++);
 		count ++;
 		if (count > 63) {
 			changeLine ++;
 			count = 0;
-			col = 24;
+			col = 0;
 		}
 	  }
   }
