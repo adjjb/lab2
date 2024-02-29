@@ -81,7 +81,7 @@ int main()
   struct usb_keyboard_packet packet;
   int transferred;
   char keystate[12];
-  char word[256];
+  char word[512];
   unsigned int a,b,c, order; memset(word, '\0', sizeof(word));
 
   if ((err = fbopen()) != 0) {
@@ -202,7 +202,7 @@ int main()
 
 		/*Send the message and clean the word variable*/
 		write(sockfd, word, strlen(word));
-		for (int k = 0; k < 256; k ++) {
+		for (int k = 0; k < 512; k ++) {
 			word[k] = '\0';
 		}
 		order = 0;
