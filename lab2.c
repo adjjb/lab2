@@ -170,7 +170,7 @@ int main()
 	fbclean(23,64,21,0);
 	fbputs(word, 21, 0);
       }
-      else if (packet.keycode[0] == 0x28 && couldEnter == 1){
+      else if (packet.keycode[0] == 0x28){
 	fbclean(24,64,21,0);
 	if (b!= 0 ){
 		word[order] = '\0';
