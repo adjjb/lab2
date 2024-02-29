@@ -103,7 +103,7 @@ int main()
 	word[k] = '\0';
   }
   word[0] = '|';
-  fbputs(word,21,0);
+  fbputs(word,21,0,0);
 
   /* Open the keyboard */
   if ( (keyboard = openkeyboard(&endpoint_address)) == NULL ) {
@@ -159,7 +159,7 @@ int main()
       } 
 	    
       if (b!= 0 && c ==0){
-	      fbputs(word,21,0);
+	      fbputs(word,21,0,0);
       }
       if (packet.keycode[0] == 0x29) { /* ESC pressed? */
 	break;
@@ -171,13 +171,13 @@ int main()
 	word[order] = word[order -1];
 	word[order -1] = '|';
 	order --;
-        fbputs(word,21,0);
+        fbputs(word,21,0,0);
       }   
       else if (packet.keycode[0] == 0x4f){ /*right arrow*/
 	word[order] = word[order + 1];
 	word[order+1] = '|';
 	order ++;
-	fbputs(word,21,0);
+	fbputs(word,21,0,0);
       }
 	      
       else if (packet.keycode[0] == 0x2a){  /*backspace*/
@@ -189,7 +189,7 @@ int main()
 	word[strlen(word) - 1] = '\0';
 	order --;
 	fbclean(23,64,21,0);
-	fbputs(word, 21, 0);
+	fbputs(word, 21, 0,0);
       }
       
       else if (packet.keycode[0] == 0x28){ /*enter*/
@@ -213,7 +213,7 @@ int main()
 		}
 		order = 0;
 		word[0] = '|';
-		fbputs(word, 21, 0);
+		fbputs(word, 21, 0,0);
 	}
       }
     }
@@ -236,7 +236,7 @@ void *network_thread_f(void *ignored)
   while ( (n = read(sockfd, &recvBuf, BUFFER_SIZE - 1)) > 0 ) {
     recvBuf[n] = '\0';
     printf("%s", recvBuf);
-    fbputs(recvBuf, rowDisplay, 0);
+    fbputs(recvBuf, rowDisplay, 0,1);
     rowDisplay ++;
     if (rowDisplay == 20){
 	fbclean(rowDisplay,64,0,0);
