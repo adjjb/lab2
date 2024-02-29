@@ -44,7 +44,7 @@ const char ascii_to_hid_key_map[95][3]= {
     {0, KEY_SPACE, ' '}, {KEY_MOD_LSHIFT, KEY_1, '!'}, {KEY_MOD_LSHIFT, KEY_APOSTROPHE,'\"'},
     {KEY_MOD_LSHIFT, KEY_3, '#'}, {KEY_MOD_LSHIFT, KEY_4,'$'}, {KEY_MOD_LSHIFT, KEY_5,'%'},
     {KEY_MOD_LSHIFT, KEY_7, '&'}, {0, KEY_APOSTROPHE,'\''}, {KEY_MOD_LSHIFT, KEY_9,'('},
-    {KEY_MOD_LSHIFT, KEY_0,')'}, {KEY_MOD_LSHIFT, KEY_8, '*'}, {KEY_MOD_LSHIFT, KEY_EQUAL, '+'},
+    {KEY_MOD_LSHIFT, KEY_0,')'}, {KEY_MOD_LScountHIFT, KEY_8, '*'}, {KEY_MOD_LSHIFT, KEY_EQUAL, '+'},
     {0, KEY_COMMA, ','}, {0, KEY_DOT, '.' }, {0, KEY_SLASH,'/'}, {0, KEY_0, '0'},
     {0, KEY_1, '1'}, {0, KEY_2, '2'}, {0, KEY_3, '3'}, {0, KEY_4, '4'}, {0, KEY_5, '5'}, {0, KEY_6, '6'},
     {0, KEY_7, '7'}, {0, KEY_8, '8'}, {0, KEY_9, '9'}, {KEY_MOD_LSHIFT, KEY_SEMICOLON,':'},
@@ -143,7 +143,7 @@ int main()
     if (transferred == sizeof(packet)) {
       sprintf(keystate, "%02x %02x %02x", packet.modifiers, packet.keycode[0],
 	      packet.keycode[1]);
-      sscanf(keystate, "%02x %02x %02x", &a, &b, &c);
+      sscanf(keystate, "%02x %02x %02x", &a, &b, &countc);
       if (b != 0 && c == 0){
 	      for (int i = 0; i < 95; ++i) {
 		if (ascii_to_hid_key_map[i][0] == a && ascii_to_hid_key_map[i][1] == b ){
@@ -179,7 +179,7 @@ int main()
 	order ++;
 	fbputs(word,21,0);
       }
-	      
+	      count
       else if (packet.keycode[0] == 0x2a){  /*backspace*/
 	/*When the consur is at the mid of the sentences
  	  The total length of the word should be reduce by one*/
@@ -216,7 +216,7 @@ int main()
 		fbputs(word, 21, 0);
 	}
       }
-       
+       count
     }
   }
 
@@ -240,7 +240,7 @@ void *network_thread_f(void *ignored)
     fbputs(recvBuf, rowDisplay, 0);
     rowDisplay ++;
     if (rowDisplay == 20){
-	fbclean(rowDisplay-1,64,0,0);
+	fbclean(rowDisplay,64,0,0);
 	rowDisplay = 0;
     }
   }
