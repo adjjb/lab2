@@ -175,6 +175,7 @@ int main()
 	for (int i = order; i < strlen(word);i ++){
 		word[i-1] = word[i];
 	}
+	word[strlen(word) - 1] = '\0';
 	order --;
 	fbclean(23,64,21,0);
 	fbputs(word, 21, 0);
