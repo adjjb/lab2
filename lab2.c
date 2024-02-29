@@ -163,11 +163,13 @@ int main()
       the neighbour position */
       else if (packet.keycode[0] == 0x50){ /*Left arrow*/
 	word[order] = word[order -1];
+	word[order -1] = '|';
 	order --;
         fbputs(word,21,0);
       }   
       else if (packet.keycode[0] == 0x4f){ /*right arrow*/
 	word[order] = word[order + 1];
+	word[order+1] = '|';
 	order ++;
 	fbputs(word,21,0);
       }
