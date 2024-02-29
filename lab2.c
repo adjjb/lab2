@@ -173,7 +173,7 @@ int main()
       else if (packet.keycode[0] == 0x2a){  /*backspace*/
 	/*When the consur is at the end of the sentences and the mid of the sentences*/
 	for (int i = order ; i < strlen(word); i++){
-		char tem[i] = word[i];
+		 tem[i] = word[i];
 	}
 	word[order-1] = '\0';
 	order  -- ;
