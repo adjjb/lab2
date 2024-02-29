@@ -82,8 +82,9 @@ int main()
   int transferred;
   char keystate[12];
   char word[512];
-  unsigned int a,b,c, order; memset(word, '\0', sizeof(word));
-
+  unsigned int a,b,c; 
+  unsigned order = 0;
+	
   if ((err = fbopen()) != 0) {
     fprintf(stderr, "Error: Could not open framebuffer: %d\n", err);
     exit(1);      
@@ -98,6 +99,9 @@ int main()
   }
 
   /*Initalization */
+  for (int k = 0; k < 512; k ++) {
+	word[k] = '\0';
+  }
   word[0] = '|';
   fbputs(word,21,0);
 
