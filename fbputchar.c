@@ -133,12 +133,6 @@ void fbputs(const char *s, int row, int col)
 
 void insertWord(char word[], int order,int newWord)
 {
-	char tem[256];
-	int i,j = 0;
-	while (i < (sizeof(word) -order)){
-		tem[i] = word[order + i];
-		i ++;
-	}
 	word[order] = newWord;
 }
 
