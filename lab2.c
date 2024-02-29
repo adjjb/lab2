@@ -143,7 +143,7 @@ int main()
       
       for (int i = 0; i < 95; ++i) {
 	if (ascii_to_hid_key_map[i][0] == a && ascii_to_hid_key_map[i][1] == b ){
-		word[strlen(word)] = '_';
+		word[strlen(word)] = ' ';
 		for (int i = strlen(word); i > order ;i --){
 				word[i] = word[i-1];
 		}
@@ -204,6 +204,8 @@ int main()
 			word[k] = '\0';
 		}
 		order = 0;
+		word[0] = '|';
+		fbputs(word, 21, 0);
 	}
       }
        
