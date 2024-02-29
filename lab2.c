@@ -142,7 +142,10 @@ int main()
       
       for (int i = 0; i < 95; ++i) {
 	if (ascii_to_hid_key_map[i][0] == a && ascii_to_hid_key_map[i][1] == b ){
-		
+
+		for (int i = order+1; i < strlen(word);i ++){
+				word[i] = word[i-1];
+		}
 		word[order] = ascii_to_hid_key_map[i][2];
 		word[order +1] = '|';
 		order ++;
@@ -173,17 +176,21 @@ int main()
 	fbputs(word, 21, 0);
       }
       
-      else if (packet.keycode[0] == 0x28){
+      else if (packet.keycode[0] == 0x28){ /*enter*/
 	fbclean(24,64,21,0);
 	if (b!= 0 ){
+		/*When the consur is at the end of the sentences and the mid of the sentences*/
 		if (order+1 == strlen(word)){
 			word[order] = '\0';
 		}
 		else{
-			for (int i = order+1; i < strlen(word);i ++)
+			for (int i = order+1; i < strlen(word);i ++){
 				word[i-1] = word[i];
 				order ++;
+			}
 		}
+
+		/*Send the message and clean the word variable*/
 		write(sockfd, word, strlen(word));
 		for (int k = 0; k < 64; k ++) {
 			word[k] = '\0';
