@@ -144,17 +144,18 @@ int main()
       sprintf(keystate, "%02x %02x %02x", packet.modifiers, packet.keycode[0],
 	      packet.keycode[1]);
       sscanf(keystate, "%02x %02x %02x", &a, &b, &c);
-      
-      for (int i = 0; i < 95; ++i) {
-	if (ascii_to_hid_key_map[i][0] == a && ascii_to_hid_key_map[i][1] == b ){
+      if (b != 0 && c == 0){
+	      for (int i = 0; i < 95; ++i) {
+		if (ascii_to_hid_key_map[i][0] == a && ascii_to_hid_key_map[i][1] == b ){
+		
+			for (int i = strlen(word); i > order ;i --){
+					word[i] = word[i-1];
+			}
+			word[order] = ascii_to_hid_key_map[i][2];
+			order ++;
 	
-		for (int i = strlen(word); i > order ;i --){
-				word[i] = word[i-1];
 		}
-		word[order] = ascii_to_hid_key_map[i][2];
-		order ++;
-
-	}
+	      }
       } 
 	    
       if (b!= 0 && c ==0){
