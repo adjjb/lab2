@@ -74,7 +74,7 @@ const char ascii_to_hid_key_map[95][3]= {
 
 int main()
 {
-  int err, col, row;
+  int err, col;
 
   struct sockaddr_in serv_addr;
 
@@ -82,10 +82,8 @@ int main()
   int transferred;
   char keystate[12];
   char word[256];
-  char tem[256];
   unsigned int a,b,c, order; memset(word, '\0', sizeof(word));
-  int couldEnter = 1;
-  int oldOrder ;
+
   if ((err = fbopen()) != 0) {
     fprintf(stderr, "Error: Could not open framebuffer: %d\n", err);
     exit(1);      
@@ -99,8 +97,10 @@ int main()
     fbputchar('_', 20, col);
   }
 
+  /*Initalization */
   word[0] = '|';
   fbputs(word,21,0);
+
   /* Open the keyboard */
   if ( (keyboard = openkeyboard(&endpoint_address)) == NULL ) {
     fprintf(stderr, "Did not find a keyboard\n");
