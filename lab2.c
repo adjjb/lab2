@@ -172,8 +172,10 @@ int main()
       }
       else if (packet.keycode[0] == 0x2a){  /*backspace*/
 	/*When the consur is at the end of the sentences and the mid of the sentences*/
-	word[order-1] = '\0';
-	order  -- ;
+	for (int i = order; i < strlen(word);i ++){
+		word[i-1] = word[i];
+	}
+	order --;
 	fbclean(23,64,21,0);
 	fbputs(word, 21, 0);
       }
