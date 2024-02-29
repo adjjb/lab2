@@ -172,19 +172,10 @@ int main()
       }
       else if (packet.keycode[0] == 0x2a){  /*backspace*/
 	/*When the consur is at the end of the sentences and the mid of the sentences*/
-	for (int i = order ; i < strlen(word); i++){
-		 tem[i] = word[i];
-	}
 	word[order-1] = '\0';
 	order  -- ;
-	for (int j = order ; j < strlen(word); j++){
-		word[j] = tem[j];
-	}
 	fbclean(23,64,21,0);
 	fbputs(word, 21, 0);
-	for (int j = 0 ; j < 64; j++){
-		tem[j] = '\0';
-	}
       }
       
       else if (packet.keycode[0] == 0x28){ /*enter*/
@@ -232,7 +223,7 @@ void *network_thread_f(void *ignored)
     printf("%s", recvBuf);
     fbputs(recvBuf, rowDisplay, 0);
     rowDisplay ++;
-    if (rowDisplay == 21){
+    if (rowDisplay == 20){
 	fbclean(rowDisplay,64,0,0);
 	rowDisplay = 0;
     }
