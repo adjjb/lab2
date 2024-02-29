@@ -182,6 +182,7 @@ int main()
 		else{
 			for (int i = order+1; i < strlen(word);i ++)
 				word[i-1] = word[i];
+				order ++;
 		}
 		write(sockfd, word, strlen(word));
 		for (int k = 0; k < order; k ++) {
