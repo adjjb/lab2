@@ -149,6 +149,7 @@ int main()
 		}
 		word[order] = ascii_to_hid_key_map[i][2];
 		order ++;
+		word [strlen(word)] = '\0';
 	}
       } 
 	    
