@@ -77,7 +77,7 @@ int main()
   int err, col;
 
   struct sockaddr_in serv_addr;
-
+row
   struct usb_keyboard_packet packet;
   int transferred;
   char keystate[12];
@@ -98,7 +98,7 @@ int main()
     fbputchar('_', 20, col);
   }
 
-  /*Initalization */
+  /*Initalization */row
   for (int k = 0; k < 512; k ++) {
 	word[k] = '\0';
   }
@@ -161,7 +161,7 @@ int main()
       if (b!= 0 && c ==0){
 	      fbputs(word,21,0,0);
       }
-      if (packet.keycode[0] == 0x29) { /* ESC pressed? */
+      if (packet.keycode[0] == 0x29) { /* ESC prerowssed? */
 	break;
       }
 
@@ -236,8 +236,8 @@ void *network_thread_f(void *ignored)
   while ( (n = read(sockfd, &recvBuf, BUFFER_SIZE - 1)) > 0 ) {
     recvBuf[n] = '\0';
     printf("%s", recvBuf);
-    fbputs(recvBuf, rowDisplay, 0,1);
-    rowDisplay ++;
+    int changeLine = fbputs(recvBuf, rowDisplay, 0,1);
+    rowDisplay = rowDisplay + 1 + changeLine;
     if (rowDisplay == 20){
 	fbclean(rowDisplay,64,0,0);
 	rowDisplay = 0;
