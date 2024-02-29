@@ -91,7 +91,7 @@ int main()
   }
 
   /* Draw space to whole screen*/
-  fbclean(24,64,0,0);int
+  fbclean(24,64,0,0);
 	
   /* Draw rows of asterisks across the top and bottom of the screen */
   for (col = 0 ; col < 64 ; col++) {
