@@ -144,7 +144,7 @@ int main()
       for (int i = 0; i < 95; ++i) {
 	if (ascii_to_hid_key_map[i][0] == a && ascii_to_hid_key_map[i][1] == b ){
 		word[strlen(word)] = '_';
-		for (int i = strlen(word)-1; i > order ;i --){
+		for (int i = strlen(word); i > order ;i --){
 				word[i] = word[i-1];
 		}
 		word[order] = ascii_to_hid_key_map[i][2];
