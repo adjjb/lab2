@@ -98,7 +98,7 @@ int main()
     fbputchar('_', 20, col);
   }
 
-  /*Initalization */row
+  /*Initalization */
   for (int k = 0; k < 512; k ++) {
 	word[k] = '\0';
   }
