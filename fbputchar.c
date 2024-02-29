@@ -120,19 +120,21 @@ void fbputs(const char *s, int row, int col, int screen)
   int count;
   int changeLine = 0;
   if (screen == 1){
-  	count = 24;
+  	  while ((c = *s++) != 0) {
+    		fbputchar(c, row + changeLine, col++);
+	  }
   }
   else {
 	  count = 0;
-  }
-  while ((c = *s++) != 0) {
-    fbputchar(c, row + changeLine, col++);
-    count ++;
-    if (count > 63) {
-        changeLine ++;
-        count = 0;
-    }
-}
+	  while ((c = *s++) != 0) {
+	    fbputchar(c, row + changeLine, col++);
+	    count ++;
+	    if (count > 63) {
+		changeLine ++;
+		count = 0;
+	    }
+  	   }
+ }
 }
 
 void insertWord(char word[], int order,int newWord)
