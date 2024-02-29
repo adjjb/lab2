@@ -58,7 +58,8 @@ void fbclean(int rowRange, int colRange, int rowStart,int colStart)
 	int row, col;
 	for (col = colStart ; col < colRange ; col++) {
 	  for(row = rowStart; row < rowRange ; row++){
-    		fbputchar(' ', row, col);
+    		fbputchar(' ', ro
+w, col);
 	  }
   }
 }
@@ -118,13 +119,15 @@ void fbputchar(char c, int row, int col)
 void fbputs(const char *s, int row, int col, int screen)
 {
   char c;
-  int count;
+  int count = 0;
   int changeLine = 0;
   if (screen == 1){
   	  while ((c = *s++) != 0) {
     		fbputchar(c, row + changeLine, col++);
-		if (col > 63) {
+		count ++;
+		if (count > 63) {
 			changeLine ++;
+			count = 0;
 			col = 24;
 		}
 	  }
@@ -132,8 +135,10 @@ void fbputs(const char *s, int row, int col, int screen)
   else {
 	  while ((c = *s++) != 0) {
 	    fbputchar(c, row + changeLine, col++);
-	    if (col > 63) {
+	    count ++;
+	    if (count > 63) {
 		changeLine ++;
+		count = 0;
 		col = 0;
 	    }
   	   }
