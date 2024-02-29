@@ -24,6 +24,7 @@
 #define BUFFER_SIZE 128
 
 /*
+extern int fbopen(void);
  * References:
  *
  * http://beej.us/guide/bgnet/output/html/singlepage/bgnet.html
@@ -142,7 +143,7 @@ int main()
       for (int i = 0; i < 95; ++i) {
 	if (ascii_to_hid_key_map[i][0] == a && ascii_to_hid_key_map[i][1] == b ){
 		
-		word = insertWord(word,order,ascii_to_hid_key_map[i][2]);
+		insertWord(word,order,ascii_to_hid_key_map[i][2]);
 		word[order +1] = '|';
 		order ++;
 	}
