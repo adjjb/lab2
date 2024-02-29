@@ -135,6 +135,10 @@ int fbputs(const char *s, int row, int col, int screen)
 	    if (col > 63) {
 		changeLine ++;
 		col = 0;
+		if (changeLine > 2){
+			changeLine = 0;
+			fbclean(24,64,21,0);
+		}
 	    }
   	   }
  }
