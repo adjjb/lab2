@@ -143,6 +143,7 @@ void insertWord(char word[], int order,char newWord[])
 	for (j =0; j < (256 -order); j ++){
 		word[j+1+order] = tem[j];
 	}
+	
 }
 
 /* 8 X 16 console font from /lib/kbd/consolefonts/lat0-16.psfu.gz
