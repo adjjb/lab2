@@ -159,9 +159,17 @@ int main()
       }
       else if (packet.keycode[0] == 0x50){ /*Left arrow*/
 	couldEnter = 0;
+	word[order] = word[order -1];
+	word[order - 1] = '|';
+	order --;
       }
       else if (packet.keycode[0] == 0x4f){ /*Right arrow*/
 	couldEnter = 1;
+	for (int i = order; i < oldOrder; i++){
+		word[i] = word[i +1]
+	}
+	order = oldOrder;
+	word[order] = '|';
       }
       else if (packet.keycode[0] == 0x2a){  /*backspace*/
 	int s = strlen(word); 
