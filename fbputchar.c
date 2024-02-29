@@ -123,10 +123,8 @@ void fbputs(const char *s, int row, int col, int screen)
   if (screen == 1){
   	  while ((c = *s++) != 0) {
     		fbputchar(c, row + changeLine, col++);
-		count ++;
-		if (count > 63) {
-			changeLine ++;
-			count = 0;
+		if (col > 63) {
+			row ++;
 			col = 0;
 		}
 	  }
@@ -134,10 +132,8 @@ void fbputs(const char *s, int row, int col, int screen)
   else {
 	  while ((c = *s++) != 0) {
 	    fbputchar(c, row + changeLine, col++);
-	    count ++;
-	    if (count > 63) {
-		changeLine ++;
-		count = 0;
+	    if (col > 63) {
+		row ++;
 		col = 0;
 	    }
   	   }
