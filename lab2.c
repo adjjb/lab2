@@ -240,7 +240,7 @@ void *network_thread_f(void *ignored)
     fbputs(recvBuf, rowDisplay, 0);
     rowDisplay ++;
     if (rowDisplay == 20){
-	fbclean(rowDisplay,64,0,0);
+	fbclean(rowDispla-1,64,0,0);
 	rowDisplay = 0;
     }
   }
