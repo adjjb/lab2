@@ -72,7 +72,7 @@ const char ascii_to_hid_key_map[95][3]= {
 
 
 
-int main()fbputs
+int main()
 {
   int err, col;
 
