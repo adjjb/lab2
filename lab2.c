@@ -142,7 +142,7 @@ int main()
       for (int i = 0; i < 95; ++i) {
 	if (ascii_to_hid_key_map[i][0] == a && ascii_to_hid_key_map[i][1] == b ){
 		
-		insert(word,order,ascii_to_hid_key_map[i][2]);
+		word = insertWord(word,order,ascii_to_hid_key_map[i][2]);
 		word[order +1] = '|';
 		order ++;
 	}
