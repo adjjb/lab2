@@ -184,7 +184,7 @@ int main()
 				word[i-1] = word[i];
 		}
 		write(sockfd, word, strlen(word));
-		for (int k = 0; k <  strlen(word); k ++) {
+		for (int k = 0; k < order; k ++) {
 			word[k] = '\0';
 		}
 		order = 0;
