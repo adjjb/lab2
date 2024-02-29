@@ -75,7 +75,7 @@ const char ascii_to_hid_key_map[95][3]= {
 int main()
 {
   int err, col;
-
+  int row = 21;
   struct sockaddr_in serv_addr;
 
   struct usb_keyboard_packet packet;
@@ -159,7 +159,7 @@ int main()
       } 
 	    
       if (b!= 0 && c ==0){
-	      fbputs(word,21,0,0);
+		fbputs(word,21,0,0);
       }
       if (packet.keycode[0] == 0x29) { /* ESC prerowssed? */
 	break;
