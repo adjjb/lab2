@@ -114,11 +114,17 @@ void fbputchar(char c, int row, int col)
  * Draw the given string at the given row/column.
  * String must fit on a single line: wrap-around is not handled.
  */
-void fbputs(const char *s, int row, int col)
+void fbputs(const char *s, int row, int col, int screen)
 {
   char c;
-  int count = 24;
+  int count;
   int changeLine = 0;
+  if (screen == 1){
+  	count = 24;
+  }
+  else {
+	  count = 0;
+  }
   while ((c = *s++) != 0) {
     fbputchar(c, row + changeLine, col++);
     count ++;
