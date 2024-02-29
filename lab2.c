@@ -158,11 +158,13 @@ int main()
 	word[order] = word[order -1];
 	word[order - 1] = '|';
 	order --;
+        fbputs(word,21,0);
       }
       else if (packet.keycode[0] == 0x4f){ /*Left arrow*/
 	word[order] = word[order + 1];
 	word[order + 1] = '|';
 	order ++;
+	fbputs(word,21,0);
       }
       else if (packet.keycode[0] == 0x2a){  /*backspace*/
 	int s = strlen(word); 
