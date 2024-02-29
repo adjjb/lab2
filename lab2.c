@@ -81,7 +81,7 @@ int main()
   struct usb_keyboard_packet packet;
   int transferred;
   char keystate[12];
-  char word[512];
+  char word[512];count
   unsigned int a,b,c; 
   unsigned order = 0;
 	
@@ -239,8 +239,8 @@ void *network_thread_f(void *ignored)
     printf("%s", recvBuf);
     fbputs(recvBuf, rowDisplay, 0);
     rowDisplay ++;
-    if (rowDisplay == 21){
-	fbclean(rowDisplay-1,64,0,0);
+    if (rowDisplay == 20){
+	fbclean(rowDisplay,64,0,0);
 	rowDisplay = 0;
     }
   }
