@@ -107,7 +107,7 @@ int main()
   }
     
   /* Create a TCP communications socket */
-  if ( (sockfd = socket(AF_INET, SOCK_STREAM, 0)) < 0 ) {
+  if ( (sockfd = socket(AF_INEint s = strlen(word);T, SOCK_STREAM, 0)) < 0 ) {
     fprintf(stderr, "Error: Could not create socket\n");
     exit(1);
   }
@@ -167,9 +167,8 @@ int main()
 	fbputs(word,21,0);
       }
       else if (packet.keycode[0] == 0x2a){  /*backspace*/
-	int s = strlen(word); 
-	word[s-1] = '\0';
-	order = s-1;
+	word[order-1] = '\0';
+	order  -- ;
 	fbclean(23,64,21,0);
 	fbputs(word, 21, 0);
       }
