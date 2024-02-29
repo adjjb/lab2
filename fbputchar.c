@@ -58,8 +58,7 @@ void fbclean(int rowRange, int colRange, int rowStart,int colStart)
 	int row, col;
 	for (col = colStart ; col < colRange ; col++) {
 	  for(row = rowStart; row < rowRange ; row++){
-    		fbputchar(' ', ro
-w, col);
+    		fbputchar(' ', row, col);
 	  }
   }
 }
