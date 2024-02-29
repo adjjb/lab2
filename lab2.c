@@ -81,7 +81,7 @@ int main()
   struct usb_keyboard_packet packet;
   int transferred;
   char keystate[12];
-  char word[512];count
+  char word[512];
   unsigned int a,b,c; 
   unsigned order = 0;
 	
