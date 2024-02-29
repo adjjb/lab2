@@ -157,7 +157,7 @@ int main()
 	}
       } 
 	    
-      if (b!= 0 ){
+      if (b!= 0 && c ==0){
 	      fbputs(word,21,0);
       }
       if (packet.keycode[0] == 0x29) { /* ESC pressed? */
