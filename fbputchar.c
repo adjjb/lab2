@@ -117,13 +117,14 @@ void fbputchar(char c, int row, int col)
 void fbputs(const char *s, int row, int col)
 {
   char c;
+  int count = 24;
   int changeLine = 0;
   while ((c = *s++) != 0) {
     fbputchar(c, row + changeLine, col++);
-
-    if (col > 63) {
+    count ++;
+    if (count > 63) {
         changeLine ++;
-        col = 0;
+        count = 0;
     }
 }
 }
