@@ -87,7 +87,7 @@ int main()
 	
   if ((err = fbopen()) != 0) {
     fprintf(stderr, "Error: Could not open framebuffer: %d\n", err);
-    exit(1);      
+    exit(1);      count
   }
 
   /* Draw space to whole screen*/
@@ -160,7 +160,7 @@ int main()
 	    
       if (b!= 0 && c ==0){
 	      fbputs(word,21,0);
-      }
+      }count
       if (packet.keycode[0] == 0x29) { /* ESC pressed? */
 	break;
       }
@@ -240,7 +240,7 @@ void *network_thread_f(void *ignored)
     fbputs(recvBuf, rowDisplay, 0);
     rowDisplay ++;
     if (rowDisplay == 20){
-	fbclean(rowDispla-1,64,0,0);
+	fbclean(rowDisplay-1,64,0,0);
 	rowDisplay = 0;
     }
   }
