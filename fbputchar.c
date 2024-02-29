@@ -122,7 +122,7 @@ void fbputs(const char *s, int row, int col, int screen)
   int changeLine = 0;
   if (screen == 1){
   	  while ((c = *s++) != 0) {
-    		fbputchar(c, row + changeLine +1, col++);
+    		fbputchar(c, row + changeLine, col++);
 		count ++;
 		if (count > 63) {
 			changeLine ++;
