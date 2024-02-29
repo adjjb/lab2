@@ -155,13 +155,14 @@ int main()
 	break;
       }
       else if (packet.keycode[0] == 0x50){ /*Left arrow*/
-	 if (couldEnter == 1){
-	      	 oldOrder = order;
-	      }
-	couldEnter = 0;
 	word[order] = word[order -1];
 	word[order - 1] = '|';
 	order --;
+      }
+      else if (packet.keycode[0] == 0x4f){ /*Left arrow*/
+	word[order] = word[order + 1];
+	word[order + 1] = '|';
+	order ++;
       }
       else if (packet.keycode[0] == 0x2a){  /*backspace*/
 	int s = strlen(word); 
@@ -170,6 +171,7 @@ int main()
 	fbclean(23,64,21,0);
 	fbputs(word, 21, 0);
       }
+      
       else if (packet.keycode[0] == 0x28){
 	fbclean(24,64,21,0);
 	if (b!= 0 ){
