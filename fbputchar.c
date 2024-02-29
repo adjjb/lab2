@@ -115,7 +115,7 @@ void fbputchar(char c, int row, int col)
  * Draw the given string at the given row/column.
  * String must fit on a single line: wrap-around is not handled.
  */
-void fbputs(const char *s, int row, int col, int screen)
+int fbputs(const char *s, int row, int col, int screen)
 {
   char c;
   int count = 0;
@@ -124,7 +124,7 @@ void fbputs(const char *s, int row, int col, int screen)
   	  while ((c = *s++) != 0) {
     		fbputchar(c, row + changeLine, col++);
 		if (col > 63) {
-			row ++;
+			changeLine ++;
 			col = 0;
 		}
 	  }
@@ -133,11 +133,12 @@ void fbputs(const char *s, int row, int col, int screen)
 	  while ((c = *s++) != 0) {
 	    fbputchar(c, row + changeLine, col++);
 	    if (col > 63) {
-		row ++;
+		changeLine ++;
 		col = 0;
 	    }
   	   }
  }
+ return changeLine;
 }
 
 void insertWord(char word[], int order,int newWord)
