@@ -41,7 +41,7 @@ void *network_thread_f(void *);
 
 int rowDisplay = 0 ;
 
-/*A dictionary map for keyboard code*/
+/*A dictionary map for keyboard code*/extern void insertWord(char* , int,  int);
 const char ascii_to_hid_key_map[95][3]= {
     {0, KEY_SPACE, ' '}, {KEY_MOD_LSHIFT, KEY_1, '!'}, {KEY_MOD_LSHIFT, KEY_APOSTROPHE,'\"'},
     {KEY_MOD_LSHIFT, KEY_3, '#'}, {KEY_MOD_LSHIFT, KEY_4,'$'}, {KEY_MOD_LSHIFT, KEY_5,'%'},
@@ -76,7 +76,6 @@ const char ascii_to_hid_key_map[95][3]= {
 int main()
 {
   int err, col;
-  int row = 21;
   struct sockaddr_in serv_addr;
 
   struct usb_keyboard_packet packet;
