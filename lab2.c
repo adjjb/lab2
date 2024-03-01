@@ -2,7 +2,8 @@
  *
  * CSEE 4840 Lab 2 for 2019
  *
- * Name/UNI: Please Changeto Yourname (pcy2301)
+ * Chuyi Jiang / cj2792
+ * Xinzi Yu / xy2590
  */
 #include "fbputchar.h"
 #include <stdio.h>
