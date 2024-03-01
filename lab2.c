@@ -38,8 +38,10 @@ struct libusb_device_handle *keyboard;
 uint8_t endpoint_address;
 pthread_t network_thread;
 void *network_thread_f(void *);
+
 int rowDisplay = 0 ;
 
+/*A dictionary map for keyboard code*/
 const char ascii_to_hid_key_map[95][3]= {
     {0, KEY_SPACE, ' '}, {KEY_MOD_LSHIFT, KEY_1, '!'}, {KEY_MOD_LSHIFT, KEY_APOSTROPHE,'\"'},
     {KEY_MOD_LSHIFT, KEY_3, '#'}, {KEY_MOD_LSHIFT, KEY_4,'$'}, {KEY_MOD_LSHIFT, KEY_5,'%'},
@@ -71,7 +73,6 @@ const char ascii_to_hid_key_map[95][3]= {
 
 
 
-
 int main()
 {
   int err, col;
@@ -81,9 +82,9 @@ int main()
   struct usb_keyboard_packet packet;
   int transferred;
   char keystate[12];
-  char word[512];
+  char word[512]; /*Record the word and characters*/
   unsigned int a,b,c; 
-  unsigned order = 0;
+  unsigned order = 0;/*The position of the cursor*/
 	
   if ((err = fbopen()) != 0) {
     fprintf(stderr, "Error: Could not open framebuffer: %d\n", err);
@@ -238,7 +239,9 @@ void *network_thread_f(void *ignored)
     printf("%s", recvBuf);
     int changeLine = fbputs(recvBuf, rowDisplay, 0,1);
     rowDisplay = rowDisplay + 1 + changeLine;
-    if (rowDisplay == 20){
+
+    /*If the displayed message reach the splited line, clean the screen*/
+    if (rowDisplay >= 20){
 	fbclean(rowDisplay,64,0,0);
 	rowDisplay = 0;
     }
