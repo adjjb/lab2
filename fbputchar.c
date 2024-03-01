@@ -9,7 +9,7 @@
  * http://www.diskohq.com/docu/api-reference/fb_8h-source.html
  */
 
-#include "fbputchar.h"
+#include "fbputchar.h"extern void insertWord(char* , int,  int);
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <fcntl.h>
@@ -118,7 +118,6 @@ void fbputchar(char c, int row, int col)
 int fbputs(const char *s, int row, int col, int screen)
 {
   char c;
-  int count = 0;
   int changeLine = 0;
   if (screen == 1){
   	  while ((c = *s++) != 0) {
