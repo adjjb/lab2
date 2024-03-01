@@ -145,10 +145,6 @@ int fbputs(const char *s, int row, int col, int screen)
  return changeLine;
 }
 
-void insertWord(char word[], int order,int newWord)
-{
-	word[order] = newWord;
-}
 
 /* 8 X 16 console font from /lib/kbd/consolefonts/lat0-16.psfu.gz
 
