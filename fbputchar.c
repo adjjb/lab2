@@ -9,7 +9,7 @@
  * http://www.diskohq.com/docu/api-reference/fb_8h-source.html
  */
 
-#include "fbputchar.h"extern void insertWord(char* , int,  int);
+#include "fbputchar.h"
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <fcntl.h>
